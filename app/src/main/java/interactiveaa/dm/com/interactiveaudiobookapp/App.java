@@ -5,6 +5,8 @@ import android.content.Context;
 
 public class App extends Application {
 
+    //helper class to get context if needed
+
     private static Context mContext;
 
     @Override

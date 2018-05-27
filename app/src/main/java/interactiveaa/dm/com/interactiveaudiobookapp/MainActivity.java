@@ -22,8 +22,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    /* needed for landscape orientation programatically
-    public void fullscreenCall() {
+    public void hideNavBar() {
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -32,14 +31,14 @@ public class MainActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
-    }*/
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
-        //fullscreenCall();
+        hideNavBar();
         Button start = findViewById(R.id.start);
         start.setOnClickListener(new View.OnClickListener() {
             @Override
