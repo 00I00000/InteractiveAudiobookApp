@@ -1,0 +1,70 @@
+<resources>
+    <string name="app_name">InteractiveAudiobookApp</string>
+
+    <string name="question">Was wirst du tun?</string>
+    <string-array name="nodes">
+        <item
+            >Wirst du dies tun?</item>
+        <item
+            >Oder wirst du dies tun?</item>
+        <item
+            >Wirst du dies tun?</item>
+        <item
+            >Oder wirst du dies tun?</item>
+        <item
+            >Wirst du dies tun?</item>
+        <item
+            >Oder wirst du dies tun?</item>
+        <item
+            >Wirst du dies tun?</item>
+        <item
+            >Oder wirst du dies tun?</item>
+        <item
+            >Wirst du dies tun?</item>
+        <item
+            >Oder wirst du dies tun?</item>
+        <item
+            >Wirst du dies tun?</item>
+        <item
+            >Oder wirst du dies tun?</item>
+        <item
+            >Wirst du dies tun?</item>
+        <item
+            >Oder wirst du dies tun?</item>
+        <item
+            >Wirst du dies tun?</item>
+        <item
+            >Oder wirst du dies tun?</item>
+        <item
+            >Wirst du dies tun?</item>
+        <item
+            >Oder wirst du dies tun?</item>
+        <item
+            >Wirst du dies tun?</item>
+        <item
+            >Oder wirst du dies tun?</item>
+        <item
+            >Wirst du dies tun?</item>
+        <item
+            >Oder wirst du dies tun?</item>
+        <item
+            >Wirst du dies tun?</item>
+        <item
+            >Oder wirst du dies tun?</item>
+        <item
+            >Wirst du dies tun?</item>
+        <item
+            >Oder wirst du dies tun?</item>
+    </string-array>
+    <string name="repeat">Repeat last audio</string>
+    <string name="back">Back to bookselection</string>
+    <string name="menu">Menu</string>
+    <string name="new_game">New Game</string>
+    <string name="save">Save</string>
+    <string name="load">Load</string>
+    <string name="mountever">Mount Everest</string>
+    <string name="comingsoon">Coming soon</string>
+    <string name="save_file1">Save File 1</string>
+    <string name="save_file2">Save File 2</string>
+    <string name="save_file3">Save File 3</string>
+</resources>
