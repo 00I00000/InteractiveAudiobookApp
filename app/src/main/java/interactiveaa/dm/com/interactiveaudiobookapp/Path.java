@@ -2,42 +2,31 @@ package interactiveaa.dm.com.interactiveaudiobookapp;
 
 import android.content.Context;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 public class Path {
 
-    private String story;
-    private Path leftP;
-    private Path rightP;
-    private int identifier;
+    private HashMap<Integer, List<String>> path = new HashMap<Integer, List<String>>();
+    private List<String> answers = new ArrayList<>();
+    public static int pathIdentifier;
 
-    Context mContext;
-
-    public Path(int resIdentifier, int identifier) {
-        this.identifier = identifier;
-        story = App.getContext().getResources().getString(resIdentifier);
-    }
-
-    public void addLeft(int identifier) {
-        leftP.story = App.getContext().getResources().getString(identifier);
-    }
-
-    public void addRight(int identifier) {
-        rightP.story = App.getContext().getResources().getString(identifier);
-    }
-
-    public String getStory() {
-        return story;
-    }
-
-    public Path getLeftP() {
-        return leftP;
-    }
-
-
-    public Path getRightP() {
-        return rightP;
+    public Path(int identifier) {
+        this.pathIdentifier = identifier;
     }
 
     public int getIdentifier() {
-        return identifier;
+        return pathIdentifier;
+    }
+
+    public String getLeftAnswer() {
+        Integer cast = new Integer(pathIdentifier);
+        return path.get(cast).get(0);
+    }
+
+    public String getRightAnswer() {
+        Integer cast = new Integer(pathIdentifier);
+        return path.get(cast).get(1);
     }
 }

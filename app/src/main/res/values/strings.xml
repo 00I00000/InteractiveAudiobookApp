@@ -57,7 +57,7 @@
             >Oder wirst du dies tun?</item>
     </string-array>
     <string name="repeat">Repeat last audio</string>
-    <string name="back">Back to bookselection</string>
+    <string name="back">Back</string>
     <string name="menu">Menu</string>
     <string name="new_game">New Game</string>
     <string name="save">Save</string>

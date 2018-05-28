@@ -1,5 +1,8 @@
 package interactiveaa.dm.com.interactiveaudiobookapp;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
+import android.view.MenuItem;
 
 public class PauseButtonFragment extends Fragment implements View.OnClickListener{
 
@@ -30,4 +34,21 @@ public class PauseButtonFragment extends Fragment implements View.OnClickListene
         mPopupMenu.inflate(R.menu.menu_main);
         mPopupMenu.show();
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_save:
+                Intent intent = new Intent(this.getActivity(), PauseSaveActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.menu_load:
+                return true;
+            case R.id.menu_new:
+                return true;
+            default:
+                return false;
+        }
+    }
+
 }

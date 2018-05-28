@@ -11,5 +11,6 @@ public class Globals extends Application {
     }
 
     //path has to be already set from start, probably final
+    //probably dont need these
 
 }
