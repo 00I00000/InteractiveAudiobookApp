@@ -40,6 +40,9 @@ public class PauseButtonFragment extends Fragment implements View.OnClickListene
         switch (item.getItemId()) {
             case R.id.menu_save:
                 Intent intent = new Intent(this.getActivity(), PauseSaveActivity.class);
+                Bundle b = new Bundle();
+                b.putInt("key", 0);
+                intent.putExtras(b);
                 startActivity(intent);
                 return true;
             case R.id.menu_load:

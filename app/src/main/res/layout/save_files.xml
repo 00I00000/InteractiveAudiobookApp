@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F0FFFF">
+    android:background="#7eabab">
 
     <Button
         android:text="@string/save_file1"
@@ -12,6 +12,7 @@
         android:layout_width="550sp"
         android:layout_height="wrap_content"
         android:textSize="40sp"
+        android:background="@drawable/button"
         app:layout_constraintLeft_toRightOf="@id/guideline11"
         app:layout_constraintTop_toBottomOf="@id/guideline8" />
 
@@ -21,6 +22,7 @@
         android:layout_width="550sp"
         android:layout_height="wrap_content"
         android:textSize="40sp"
+        android:background="@drawable/button"
         app:layout_constraintLeft_toRightOf="@id/guideline11"
         app:layout_constraintTop_toBottomOf="@id/guideline9" />
 
@@ -30,6 +32,7 @@
         android:layout_width="550sp"
         android:layout_height="wrap_content"
         android:textSize="40sp"
+        android:background="@drawable/button"
         app:layout_constraintLeft_toRightOf="@id/guideline11"
         app:layout_constraintTop_toBottomOf="@id/guideline10" />
 
@@ -39,6 +42,7 @@
         android:layout_height="wrap_content"
         android:text="@string/back"
         android:textAllCaps="false"
+        android:background="@drawable/button"
         app:layout_constraintTop_toBottomOf="@id/guideline14"
         app:layout_constraintRight_toLeftOf="@id/guideline13" />
 
