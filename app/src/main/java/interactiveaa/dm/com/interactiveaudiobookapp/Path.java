@@ -10,13 +10,18 @@ public class Path {
 
     private HashMap<Integer, List<String>> path = new HashMap<Integer, List<String>>();
     private List<String> answers = new ArrayList<>();
+    public static int bookIdentifier;
     public static int pathIdentifier;
 
-    public Path(int identifier) {
-        this.pathIdentifier = identifier;
+    public Path(int bookIdentifier, int pathIdentifier) {
+        this.bookIdentifier = bookIdentifier;
+        this.pathIdentifier = pathIdentifier;
+        if (bookIdentifier == 0) {
+
+        }
     }
 
-    public int getIdentifier() {
+    public int getPathIdentifier() {
         return pathIdentifier;
     }
 
@@ -28,5 +33,9 @@ public class Path {
     public String getRightAnswer() {
         Integer cast = new Integer(pathIdentifier);
         return path.get(cast).get(1);
+    }
+
+    public int getBookIdentifier() {
+        return bookIdentifier;
     }
 }

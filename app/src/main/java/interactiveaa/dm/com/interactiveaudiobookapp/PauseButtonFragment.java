@@ -1,5 +1,6 @@
 package interactiveaa.dm.com.interactiveaudiobookapp;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -39,13 +40,18 @@ public class PauseButtonFragment extends Fragment implements View.OnClickListene
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_save:
-                Intent intent = new Intent(this.getActivity(), PauseSaveActivity.class);
-                Bundle b = new Bundle();
-                b.putInt("key", 0);
-                intent.putExtras(b);
-                startActivity(intent);
+                Intent saveIntent = new Intent(this.getActivity(), PauseSaveActivity.class);
+                Bundle bSave = new Bundle();
+                bSave.putString("key", "save");
+                saveIntent.putExtras(bSave);
+                startActivity(saveIntent);
                 return true;
             case R.id.menu_load:
+                Intent loadIntent = new Intent(this.getActivity(), PauseSaveActivity.class);
+                Bundle bLoad = new Bundle();
+                bLoad.putString("key", "load");
+                loadIntent.putExtras(bLoad);
+                startActivity(loadIntent);
                 return true;
             case R.id.menu_new:
                 return true;

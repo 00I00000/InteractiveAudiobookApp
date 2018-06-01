@@ -30,6 +30,10 @@
             android:name=".SaveFilesActivity"
             android:screenOrientation="userLandscape">
         </activity>
+        <activity
+            android:name=".PlayAudioActivity"
+            android:screenOrientation="userLandscape">
+        </activity>
     </application>
 
 </manifest>

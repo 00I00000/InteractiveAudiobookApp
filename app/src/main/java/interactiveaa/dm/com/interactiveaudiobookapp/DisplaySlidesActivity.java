@@ -1,7 +1,9 @@
 package interactiveaa.dm.com.interactiveaudiobookapp;
 
 import android.Manifest;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +15,16 @@ import android.widget.Toast;
 import java.io.FileOutputStream;
 
 public class DisplaySlidesActivity extends AppCompatActivity {
+
+    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (action.equals("finishSlides")) {
+                finish();
+            }
+        }
+    };
 
     public void hideNavBar() {
         View decorView = getWindow().getDecorView();

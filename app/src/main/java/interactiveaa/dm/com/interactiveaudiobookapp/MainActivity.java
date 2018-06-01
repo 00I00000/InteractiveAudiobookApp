@@ -11,16 +11,6 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            if (action.equals("finish")) {
-                finish();
-            }
-        }
-    };
-
     public void hideNavBar() {
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(
@@ -79,4 +69,10 @@ public class MainActivity extends AppCompatActivity {
                 return false;
         }
     }*/
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        hideNavBar();
+    }
 }

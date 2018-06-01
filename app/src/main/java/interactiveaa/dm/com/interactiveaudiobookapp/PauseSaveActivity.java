@@ -2,6 +2,7 @@ package interactiveaa.dm.com.interactiveaudiobookapp;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -17,6 +18,8 @@ public class PauseSaveActivity extends AppCompatActivity {
     private Button saveBtn1;
     private Button saveBtn2;
     private Button saveBtn3;
+
+    private View newGameBtn;
 
     public void hideNavBar() {
         View decorView = getWindow().getDecorView();
@@ -34,67 +37,42 @@ public class PauseSaveActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.save_files);
+        newGameBtn = findViewById(R.id.newGameBtn);
+        newGameBtn.setVisibility(View.GONE);
         hideNavBar();
         Bundle b = getIntent().getExtras();
-        int state = b.getInt("key");
+        String state = b.getString("key");
         Button back = findViewById(R.id.backBtn);
-        Button save1 = findViewById(R.id.saveFile1);
-        if (state == 0) {
-            save1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    testForOverwrite(1);
+        saveBtn1 = findViewById(R.id.saveFile1);
+        saveBtn2 = findViewById(R.id.saveFile2);
+        saveBtn3 = findViewById(R.id.saveFile3);
+        Button[] btnContainer = {saveBtn1, saveBtn2, saveBtn3};
+        if (state.equals("save")) {
+            for (int i = 0; i < btnContainer.length; i++) {
+                final int temp = i;
+                if (overwritesFile(i + 1)) {
+                    btnContainer[i].setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            overwrite(temp + 1);
+                        }
+                    });
+                } else {
+                    btnContainer[i].setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            save(temp + 1);
+                        }
+                    });
                 }
-            });
-            Button save2 = findViewById(R.id.saveFile2);
-            save2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    testForOverwrite(2);
-                }
-            });
-            Button save3 = findViewById(R.id.saveFile3);
-            save3.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    testForOverwrite(3);
-                }
-            });
-        } else {
-            save1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    save(0);
-                }
-            });
-            Button save2 = findViewById(R.id.saveFile2);
-            save2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    save(1);
-                }
-            });
-            Button save3 = findViewById(R.id.saveFile3);
-            save3.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    save(2);
-                }
-            });
+            }
         }
-        for (int i = 1; i <= 3; i++) {
-            checkFiles = getSharedPreferences("saveFile" + i, Context.MODE_PRIVATE);
-            if (checkFiles == null) {
-                switch (i) {
-                    case 1: saveBtn1 = findViewById(R.id.saveFile1);
-                            saveBtn1.setEnabled(false);
-                            break;
-                    case 2: saveBtn2 = findViewById(R.id.saveFile2);
-                            saveBtn2.setEnabled(false);
-                            break;
-                    case 3: saveBtn3 = findViewById(R.id.saveFile3);
-                            saveBtn3.setEnabled(false);
-                            break;
+        if (state.equals("load")) {
+            for (int i = 0; i < btnContainer.length; i++) {
+                checkFiles = getSharedPreferences("saveFiles", Context.MODE_PRIVATE);
+                int value = checkFiles.getInt("saveFile" + (i + 1), -1);
+                if (value == -1) {
+                    btnContainer[i].setEnabled(false);
                 }
             }
         }
@@ -115,28 +93,42 @@ public class PauseSaveActivity extends AppCompatActivity {
     }
 
     public void load(int savePosition) {
+        checkFiles = getSharedPreferences("saveFiles", Context.MODE_PRIVATE);
+        int pathIdentifier = checkFiles.getInt("saveFile" + savePosition, -1);
+        Intent loadIntent = new Intent(PauseSaveActivity.this, DisplaySlidesActivity.class);
+        Bundle b = new Bundle();
+        b.putInt("key", pathIdentifier);
+        loadIntent.putExtras(b);
+        startActivity(loadIntent);
+        finish();
     }
 
-    private void testForOverwrite(final int savePosition) {
-        checkFiles = getSharedPreferences("saveFile" + savePosition, Context.MODE_PRIVATE);
-        if (checkFiles != null) {
-            AlertDialog.Builder prompt = new AlertDialog.Builder(PauseSaveActivity.this);
-            prompt.setTitle("Warning!");
-            prompt.setMessage("You are about to overwrite an existing save file");
-            prompt.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    save(savePosition);
-                }
-            });
-            prompt.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    return;
-                }
-            });
-            prompt.show();
+    private boolean overwritesFile(int savePosition) {
+        checkFiles = getSharedPreferences("saveFiles", Context.MODE_PRIVATE);
+        int value = checkFiles.getInt("saveFile" + savePosition, -1);
+        if (value != -1) {
+            return true;
         }
+        return false;
+    }
+
+    private void overwrite(final int savePosition) {
+        AlertDialog.Builder prompt = new AlertDialog.Builder(PauseSaveActivity.this);
+        prompt.setTitle("Warning!");
+        prompt.setMessage("You are about to overwrite an existing save file");
+        prompt.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                save(savePosition);
+            }
+        });
+        prompt.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                return;
+            }
+        });
+        prompt.show();
     }
 
 }

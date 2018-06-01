@@ -36,7 +36,7 @@ public class DisplayBooksActivity extends AppCompatActivity {
                 Cover cover = covers[position];
                 Intent intent = new Intent(DisplayBooksActivity.this, SaveFilesActivity.class);
                 Bundle b = new Bundle();
-                b.putInt("key", 1);
+                b.putInt("key", 0);
                 intent.putExtras(b);
                 startActivity(intent);
             }
