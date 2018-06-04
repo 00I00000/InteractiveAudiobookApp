@@ -46,4 +46,12 @@ public class BooksAdapter extends BaseAdapter {
         nameTextView.setText(mContext.getString(cover.getName()));
         return convertView;
     }
+
+    @Override
+    public boolean isEnabled(int position) {
+        if (position != 0) {
+            return false;
+        }
+        return true;
+    }
 }

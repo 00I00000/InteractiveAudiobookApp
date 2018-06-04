@@ -67,4 +67,5 @@
     <string name="save_file1">Save File 1</string>
     <string name="save_file2">Save File 2</string>
     <string name="save_file3">Save File 3</string>
+    <string name="skip">Skip</string>
 </resources>

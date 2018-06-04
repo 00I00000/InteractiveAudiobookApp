@@ -70,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }*/
 
+    // savefiles new game button groß
+    // end screen book selection, new game, back
     @Override
     protected void onResume() {
         super.onResume();
