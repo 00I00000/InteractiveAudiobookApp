@@ -36,7 +36,7 @@ public class PauseSaveActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.save_files);
+        setContentView(R.layout.pause_save_activity);
         newGameBtn = findViewById(R.id.newGameBtn);
         newGameBtn.setVisibility(View.GONE);
         hideNavBar();
@@ -86,7 +86,6 @@ public class PauseSaveActivity extends AppCompatActivity {
 
     public void save(int savePosition) {
         SharedPreferences sharedPref = getSharedPreferences("saveFiles", Context.MODE_PRIVATE);
-
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putInt("saveFile" + savePosition, Path.pathIdentifier);
         editor.apply();
@@ -122,12 +121,7 @@ public class PauseSaveActivity extends AppCompatActivity {
                 save(savePosition);
             }
         });
-        prompt.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                return;
-            }
-        });
+        prompt.setNegativeButton("Cancel", null);
         prompt.show();
     }
 

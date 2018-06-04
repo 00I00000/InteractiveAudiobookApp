@@ -13,10 +13,6 @@ public class SaveFilesActivity extends AppCompatActivity {
 
     private SharedPreferences checkFiles;
 
-    private Button saveBtn1;
-    private Button saveBtn2;
-    private Button saveBtn3;
-
     public void hideNavBar() {
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(
@@ -32,35 +28,11 @@ public class SaveFilesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.save_files);
+        setContentView(R.layout.save_files_activity);
         hideNavBar();
         Bundle b = getIntent().getExtras();
         int book = b.getInt("key");
         Path.bookIdentifier = book;
-        saveBtn1 = findViewById(R.id.saveFile1);
-        saveBtn2 = findViewById(R.id.saveFile2);
-        saveBtn3 = findViewById(R.id.saveFile3);
-        Button[] btnContainer = {saveBtn1, saveBtn2, saveBtn3};
-        for (int i = 0; i < btnContainer.length; i++) {
-            checkFiles = getSharedPreferences("saveFiles", Context.MODE_PRIVATE);
-            final int value = checkFiles.getInt("saveFile" + (i + 1), -1);
-            if (value != -1) {
-                btnContainer[i].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(SaveFilesActivity.this, DisplaySlidesActivity.class);
-                        Bundle b = new Bundle();
-                        b.putInt("key", value);
-                        intent.putExtras(b);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        startActivity(intent);
-                        finish();
-                    }
-                });
-            } else {
-                btnContainer[i].setEnabled(false);
-            }
-        }
         Button newGame = findViewById(R.id.newGameBtn);
         newGame.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +41,7 @@ public class SaveFilesActivity extends AppCompatActivity {
                 Bundle b = new Bundle();
                 b.putInt("key", 1);
                 intent.putExtras(b);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 finish();
             }
