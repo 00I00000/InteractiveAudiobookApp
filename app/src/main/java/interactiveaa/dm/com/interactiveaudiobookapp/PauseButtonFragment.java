@@ -21,20 +21,6 @@ import android.view.MenuItem;
 
 public class PauseButtonFragment extends Fragment implements View.OnClickListener{
 
-    public void hideNavBar() {
-        final Window window = getActivity().getWindow();
-        window.clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-        window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        View decorView = window.getDecorView();
-        decorView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
-    }
-
     ImageButton imageButton;
     private PopupMenu mPopupMenu;
 
@@ -51,50 +37,51 @@ public class PauseButtonFragment extends Fragment implements View.OnClickListene
     public void onClick(View view) {
         mPopupMenu = new PopupMenu(getContext(), imageButton);
         mPopupMenu.inflate(R.menu.menu_main);
+        mPopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.menu_save:
+                        Intent saveIntent = new Intent(getActivity(), PauseSaveActivity.class);
+                        Bundle bSave = new Bundle();
+                        bSave.putString("key", "save");
+                        saveIntent.putExtras(bSave);
+                        getActivity().startActivity(saveIntent);
+                        return true;
+                    case R.id.menu_load:
+                        Intent loadIntent = new Intent(getActivity(), PauseSaveActivity.class);
+                        Bundle bLoad = new Bundle();
+                        bLoad.putString("key", "load");
+                        loadIntent.putExtras(bLoad);
+                        getActivity().startActivity(loadIntent);
+                        return true;
+                    case R.id.menu_new:
+                        new AlertDialog.Builder(getContext())
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .setTitle("New Game")
+                                .setMessage("Starting a new game will cause loss of unsaved progress")
+                                .setPositiveButton("Start a new game", new DialogInterface.OnClickListener()
+                                {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent(getActivity(), PlayAudioActivity.class);
+                                        Bundle b = new Bundle();
+                                        b.putInt("key", 1);
+                                        intent.putExtras(b);
+                                        getActivity().startActivity(intent);
+                                        getActivity().finish();
+                                    }
+
+                                })
+                                .setNegativeButton("Back", null)
+                                .show();
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        });
         mPopupMenu.show();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_save:
-                Intent saveIntent = new Intent(this.getActivity(), PauseSaveActivity.class);
-                Bundle bSave = new Bundle();
-                bSave.putString("key", "save");
-                saveIntent.putExtras(bSave);
-                startActivity(saveIntent);
-                return true;
-            case R.id.menu_load:
-                Intent loadIntent = new Intent(this.getActivity(), PauseSaveActivity.class);
-                Bundle bLoad = new Bundle();
-                bLoad.putString("key", "load");
-                loadIntent.putExtras(bLoad);
-                startActivity(loadIntent);
-                return true;
-            case R.id.menu_new:
-                new AlertDialog.Builder(getContext())
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setTitle("Close App")
-                        .setMessage("Do you want to exit the app?")
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener()
-                        {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Intent intent = new Intent(getActivity(), PlayAudioActivity.class);
-                                Bundle b = new Bundle();
-                                b.putInt("key", 1);
-                                intent.putExtras(b);
-                                startActivity(intent);
-                                getActivity().finish();
-                            }
-
-                        })
-                        .setNegativeButton("No", null)
-                        .show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 
 }

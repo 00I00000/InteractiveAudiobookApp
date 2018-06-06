@@ -34,6 +34,10 @@
             android:name=".PlayAudioActivity"
             android:screenOrientation="userLandscape">
         </activity>
+        <activity
+            android:name=".PauseSaveActivity"
+            android:screenOrientation="userLandscape" >
+        </activity>
     </application>
 
 </manifest>

@@ -19,8 +19,6 @@ public class PauseSaveActivity extends AppCompatActivity {
     private Button saveBtn2;
     private Button saveBtn3;
 
-    private View newGameBtn;
-
     public void hideNavBar() {
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(
@@ -37,8 +35,9 @@ public class PauseSaveActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.pause_save_activity);
-        newGameBtn = findViewById(R.id.newGameBtn);
-        newGameBtn.setVisibility(View.GONE);
+        //used to hide a button
+        /*newGameBtn = findViewById(R.id.newGameBtn);
+        newGameBtn.setVisibility(View.GONE);*/
         hideNavBar();
         Bundle b = getIntent().getExtras();
         String state = b.getString("key");
