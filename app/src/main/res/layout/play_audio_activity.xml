@@ -1,43 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <fragment
-        android:name="interactiveaa.dm.com.interactiveaudiobookapp.PauseButtonFragment"
         android:id="@+id/pauseBtnFrag"
+        android:name="interactiveaa.dm.com.interactiveaudiobookapp.PauseButtonFragment"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/guideline12"
+        app:layout_constraintTop_toBottomOf="@id/guideline14" />
 
     <TextView
         android:id="@+id/crt_chapter"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/guideline14"
+        app:layout_constraintRight_toLeftOf="@id/guideline17"
+        app:layout_constraintLeft_toRightOf="@id/guideline16" />
 
     <Button
-        android:id="@+id/skip_button"
+        android:id="@+id/skip_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/skip"/>
+        app:layout_constraintTop_toBottomOf="@id/guideline14"
+        app:layout_constraintRight_toLeftOf="@id/guideline13"/>
 
-    <Button
-        android:id="@+id/forward_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/rewind_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <Button
+    <ImageButton
         android:id="@+id/pause_play_btn"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
 
     <SeekBar
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/guideline15"
+        app:layout_constraintLeft_toRightOf="@id/guideline12"
+        app:layout_constraintRight_toLeftOf="@id/guideline13" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.08" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.18" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.82"/>
 
 </android.support.constraint.ConstraintLayout>
