@@ -22,6 +22,8 @@
 
     <Button
         android:id="@+id/skip_btn"
+        android:text="@string/skip"
+        android:background="@drawable/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/guideline14"

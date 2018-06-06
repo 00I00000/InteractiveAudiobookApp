@@ -2,20 +2,38 @@ package interactiveaa.dm.com.interactiveaudiobookapp;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.view.MenuItem;
 
 public class PauseButtonFragment extends Fragment implements View.OnClickListener{
+
+    public void hideNavBar() {
+        final Window window = getActivity().getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+        window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        View decorView = window.getDecorView();
+        decorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+    }
 
     ImageButton imageButton;
     private PopupMenu mPopupMenu;
@@ -54,9 +72,28 @@ public class PauseButtonFragment extends Fragment implements View.OnClickListene
                 startActivity(loadIntent);
                 return true;
             case R.id.menu_new:
+                new AlertDialog.Builder(getContext())
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setTitle("Close App")
+                        .setMessage("Do you want to exit the app?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(getActivity(), PlayAudioActivity.class);
+                                Bundle b = new Bundle();
+                                b.putInt("key", 1);
+                                intent.putExtras(b);
+                                startActivity(intent);
+                                getActivity().finish();
+                            }
+
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
                 return true;
             default:
-                return false;
+                return super.onOptionsItemSelected(item);
         }
     }
 

@@ -16,16 +16,6 @@ import java.io.FileOutputStream;
 
 public class DisplaySlidesActivity extends AppCompatActivity {
 
-    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            if (action.equals("finishSlides")) {
-                finish();
-            }
-        }
-    };
-
     public void hideNavBar() {
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(
