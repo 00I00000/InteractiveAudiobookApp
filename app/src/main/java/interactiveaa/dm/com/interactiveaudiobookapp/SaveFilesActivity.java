@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -28,10 +29,7 @@ public class SaveFilesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        Bundle b = getIntent().getExtras();
-        int book = b.getInt("key");
-        Path.bookIdentifier = book;
-        String bookName = PauseSaveActivity.getBookName(book);
+        String bookName = Path.getBookName();
         //todo:check if save files exist, if yes use pause_save_layout
         setContentView(R.layout.save_files_activity);
         hideNavBar();

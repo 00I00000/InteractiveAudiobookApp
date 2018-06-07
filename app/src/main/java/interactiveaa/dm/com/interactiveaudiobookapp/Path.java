@@ -38,4 +38,11 @@ public class Path {
     public int getBookIdentifier() {
         return bookIdentifier;
     }
+
+    public static String getBookName () {
+        switch (bookIdentifier) {
+            case 0: return "MountEverest";
+            default: return "Error";
+        }
+    }
 }

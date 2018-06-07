@@ -7,45 +7,66 @@
     android:background="@drawable/qscreen">
 
     <fragment
+        android:id="@+id/pauseBtnFrag"
+        android:name="interactiveaa.dm.com.interactiveaudiobookapp.PauseButtonFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:name="interactiveaa.dm.com.interactiveaudiobookapp.PauseButtonFragment"
-        android:id="@+id/pauseBtnFrag"
         app:layout_constraintLeft_toRightOf="@id/guideline3"
         app:layout_constraintTop_toBottomOf="@id/guideline2"
-        tools:layout="@layout/pause_button_fragment"/>
+        tools:layout="@layout/pause_button_fragment" />
 
-    <fragment
-        android:id="@+id/rightFrag"
-        android:name="interactiveaa.dm.com.interactiveaudiobookapp.RightAnswerFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <Button
+        android:id="@+id/rightAnswer"
+        android:layout_width="260sp"
+        android:layout_height="200sp"
         android:layout_marginLeft="10sp"
         android:layout_marginStart="10sp"
-        app:layout_constraintTop_toBottomOf="@id/guideline5"
+        android:background="@drawable/button"
         app:layout_constraintLeft_toRightOf="@id/guideline6"
+        app:layout_constraintTop_toBottomOf="@id/guideline5"
         tools:layout="@layout/right_answer_fragment" />
 
-    <fragment
-        android:id="@+id/leftFrag"
-        android:name="interactiveaa.dm.com.interactiveaudiobookapp.LeftAnswerFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <Button
+        android:id="@+id/leftAnswer"
+        android:layout_width="260sp"
+        android:layout_height="200sp"
         android:layout_marginLeft="30sp"
         android:layout_marginStart="30sp"
+        android:background="@drawable/button"
         app:layout_constraintLeft_toRightOf="@id/guideline4"
         app:layout_constraintTop_toBottomOf="@id/guideline5"
         tools:layout="@layout/left_answer_fragment" />
 
     <TextView
-        android:id="@+id/Question"
+        android:id="@+id/question"
+        android:layout_width="match_parent"
+        android:layout_height="80sp"
+        android:layout_marginLeft="20sp"
+        android:layout_marginRight="20sp"
+        app:layout_constraintTop_toBottomOf="@id/guideline18"
+        app:layout_constraintLeft_toRightOf="@id/guideline6" />
+
+    <TextView
+        android:id="@+id/path"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40sp"
-        android:text="@string/question"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@id/guideline5"
+        android:layout_marginBottom="15sp"
+        android:layout_marginLeft="35sp"
+        android:text="@string/path"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@id/guideline18"
         app:layout_constraintLeft_toRightOf="@id/guideline7" />
+
+    <Button
+        android:id="@+id/repeat"
+        android:layout_width="110sp"
+        android:layout_height="wrap_content"
+        android:text="@string/repeat"
+        android:textAllCaps="false"
+        android:layout_marginLeft="520sp"
+        android:background="@drawable/button"
+        app:layout_constraintLeft_toRightOf="@id/guideline3"
+        app:layout_constraintTop_toBottomOf="@id/guideline2"/>
 
 
     <android.support.constraint.Guideline
@@ -60,14 +81,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.3187348" />
+        app:layout_constraintGuide_percent="0.45" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.060029283" />
+        app:layout_constraintGuide_percent="0.06" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline7"
@@ -81,7 +102,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.05109489" />
+        app:layout_constraintGuide_percent="0.05" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline3"
@@ -89,5 +110,12 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.030746706" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.20" />
 
 </android.support.constraint.ConstraintLayout>

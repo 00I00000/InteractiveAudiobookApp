@@ -68,7 +68,7 @@ public class PauseSaveActivity extends AppCompatActivity {
         }
         if (state.equals("load")) {
             for (int i = 0; i < btnContainer.length; i++) {
-                checkFiles = getSharedPreferences(getBookName(Path.bookIdentifier), Context.MODE_PRIVATE);
+                checkFiles = getSharedPreferences(Path.getBookName(), Context.MODE_PRIVATE);
                 int value = checkFiles.getInt("saveFile" + (i + 1), -1);
                 if (value == -1) {
                     btnContainer[i].setEnabled(false);
@@ -84,30 +84,26 @@ public class PauseSaveActivity extends AppCompatActivity {
     }
 
     public void save(int savePosition) {
-        SharedPreferences sharedPref = getSharedPreferences(getBookName(Path.bookIdentifier), Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = getSharedPreferences(Path.getBookName(), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putInt("saveFile" + savePosition, Path.pathIdentifier);
         editor.apply();
     }
 
     public void load(int savePosition) {
-        checkFiles = getSharedPreferences(getBookName(Path.bookIdentifier), Context.MODE_PRIVATE);
+        checkFiles = getSharedPreferences(Path.getBookName(), Context.MODE_PRIVATE);
         int pathIdentifier = checkFiles.getInt("saveFile" + savePosition, -1);
         Intent loadIntent = new Intent(PauseSaveActivity.this, DisplaySlidesActivity.class);
-        Bundle b = new Bundle();
-        b.putInt("key", pathIdentifier);
-        loadIntent.putExtras(b);
+        Path.pathIdentifier = pathIdentifier;
+        loadIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(loadIntent);
         finish();
     }
 
     private boolean overwritesFile(int savePosition) {
-        checkFiles = getSharedPreferences(getBookName(Path.bookIdentifier), Context.MODE_PRIVATE);
+        checkFiles = getSharedPreferences(Path.getBookName(), Context.MODE_PRIVATE);
         int value = checkFiles.getInt("saveFile" + savePosition, -1);
-        if (value != -1) {
-            return true;
-        }
-        return false;
+        return value != -1;
     }
 
     private void overwrite(final int savePosition) {
@@ -122,13 +118,6 @@ public class PauseSaveActivity extends AppCompatActivity {
         });
         prompt.setNegativeButton("Cancel", null);
         prompt.show();
-    }
-
-    public static String getBookName (int Identifier) {
-        switch (Identifier) {
-            case 0: return "MountEverest";
-            default: return "Error";
-        }
     }
 
 }

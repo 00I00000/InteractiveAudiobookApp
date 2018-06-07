@@ -33,25 +33,6 @@ public class DisplaySlidesActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.slides);
         hideNavBar();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1000);
-        }
     }
-
-    public void saveFile(String file, String text) {
-        try {
-            FileOutputStream fos = openFileOutput(file, Context.MODE_PRIVATE);
-            fos.write(text.getBytes());
-            fos.close();
-            Toast.makeText(this, "Saved!", Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-            e.printStackTrace();
-            Toast.makeText(this, "Error saving file!", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    //SlidesFragment slidesFragment = (SlidesFragment) getSupportFragmentManager().findFragmentById(R.id.slide);
-
-
 
 }

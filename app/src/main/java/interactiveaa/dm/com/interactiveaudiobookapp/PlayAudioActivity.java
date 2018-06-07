@@ -48,8 +48,11 @@ public class PlayAudioActivity extends AppCompatActivity {
         if (Path.pathIdentifier == 0) {
             mediaPlayer = MediaPlayer.create(this, R.raw.rueckblende);
         } else {
+            //todo:fix res ID
             int pathId = Path.pathIdentifier;
-            int audioId = PlayAudioActivity.this.getResources().getIdentifier("file" + Integer.toString(pathId), "raw", PlayAudioActivity.this.getPackageName());
+            int audioId = getResources().getIdentifier("raw/file" + Integer.toString(pathId), null, this.getPackageName());
+            int resid = getResources().getIdentifier("raw/file1", null, this.getPackageName());
+            Log.d("ASDF", Integer.toString(resid));
             mediaPlayer = MediaPlayer.create(this, audioId);
         }
         mediaPlayer.start();
@@ -58,15 +61,20 @@ public class PlayAudioActivity extends AppCompatActivity {
             public void onCompletion(MediaPlayer mp) {
                 stopPlaying();
                 if (Path.pathIdentifier == 0) {
-                    //todo:start new activity with file01
+                    Path.pathIdentifier++;
+                    Intent firstIntent = new Intent(PlayAudioActivity.this, PlayAudioActivity.class);
+                    startActivity(firstIntent);
+                    finish();
                 } else {
-                    //todo:start new activity with other files
+                    Intent slidesIntent = new Intent(PlayAudioActivity.this, DisplaySlidesActivity.class);
+                    startActivity(slidesIntent);
+                    finish();
                 }
             }
         });
         seekbar = (SeekBar) findViewById(R.id.seekBar);
         seekbar.setMax(mediaPlayer.getDuration() / 1000);
-        handler.postDelayed(UpdateSongTime, 100);
+        handler.postDelayed(UpdateSongTime, 1000);
 
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -95,7 +103,7 @@ public class PlayAudioActivity extends AppCompatActivity {
                 currTime = mediaPlayer.getCurrentPosition() / 1000;
                 seekbar.setProgress((int)currTime);
             }
-            handler.postDelayed(UpdateSongTime, 100);
+            handler.postDelayed(UpdateSongTime, 1000);
         }
     };
 

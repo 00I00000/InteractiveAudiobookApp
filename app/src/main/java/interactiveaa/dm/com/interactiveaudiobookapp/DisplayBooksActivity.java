@@ -1,6 +1,8 @@
 package interactiveaa.dm.com.interactiveaudiobookapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +11,8 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 
 public class DisplayBooksActivity extends AppCompatActivity {
+
+    private SharedPreferences checkFiles;
 
     public void hideNavBar() {
         View decorView = getWindow().getDecorView();
@@ -29,15 +33,32 @@ public class DisplayBooksActivity extends AppCompatActivity {
         hideNavBar();
         GridView gridView = (GridView)findViewById(R.id.gridviewbooks);
         final BooksAdapter booksAdapter = new BooksAdapter(this, covers);
+        boolean fileExists = false;
+        for (int i = 0; i < 3; i++) {
+            checkFiles = getSharedPreferences(Path.getBookName(), Context.MODE_PRIVATE);
+            int value = checkFiles.getInt("saveFile" + (i + 1),-1);
+            if (value != -1) {
+                fileExists = true;
+            }
+        }
+        final boolean temp = fileExists;
         gridView.setAdapter(booksAdapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView parent, View view, int position, long id) {
                 Cover cover = covers[position];
+                Path.bookIdentifier = position;
+                if (temp) {
+                    Intent loadIntent = new Intent(DisplayBooksActivity.this, PauseSaveActivity.class);
+                    Bundle b = new Bundle();
+                    b.putString("key","load");
+                    loadIntent.putExtras(b);
+                    startActivity(loadIntent);
+                } else {
+                    Intent newGameIntent = new Intent(DisplayBooksActivity.this, SaveFilesActivity.class);
+                    startActivity(newGameIntent);
+                }
                 Intent intent = new Intent(DisplayBooksActivity.this, SaveFilesActivity.class);
-                Bundle b = new Bundle();
-                b.putInt("key", position);
-                intent.putExtras(b);
                 startActivity(intent);
             }
         });

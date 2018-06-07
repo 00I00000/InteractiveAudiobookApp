@@ -1,67 +1,13 @@
 <resources>
     <string name="app_name">InteractiveAudiobookApp</string>
 
-    <string name="question">Was wirst du tun?</string>
-    <string-array name="nodes">
-        <item
-            >Wirst du dies tun?</item>
-        <item
-            >Oder wirst du dies tun?</item>
-        <item
-            >Wirst du dies tun?</item>
-        <item
-            >Oder wirst du dies tun?</item>
-        <item
-            >Wirst du dies tun?</item>
-        <item
-            >Oder wirst du dies tun?</item>
-        <item
-            >Wirst du dies tun?</item>
-        <item
-            >Oder wirst du dies tun?</item>
-        <item
-            >Wirst du dies tun?</item>
-        <item
-            >Oder wirst du dies tun?</item>
-        <item
-            >Wirst du dies tun?</item>
-        <item
-            >Oder wirst du dies tun?</item>
-        <item
-            >Wirst du dies tun?</item>
-        <item
-            >Oder wirst du dies tun?</item>
-        <item
-            >Wirst du dies tun?</item>
-        <item
-            >Oder wirst du dies tun?</item>
-        <item
-            >Wirst du dies tun?</item>
-        <item
-            >Oder wirst du dies tun?</item>
-        <item
-            >Wirst du dies tun?</item>
-        <item
-            >Oder wirst du dies tun?</item>
-        <item
-            >Wirst du dies tun?</item>
-        <item
-            >Oder wirst du dies tun?</item>
-        <item
-            >Wirst du dies tun?</item>
-        <item
-            >Oder wirst du dies tun?</item>
-        <item
-            >Wirst du dies tun?</item>
-        <item
-            >Oder wirst du dies tun?</item>
-    </string-array>
-    <string name="repeat">Repeat last audio</string>
-    <string name="back">Back</string>
-    <string name="menu">Menu</string>
-    <string name="new_game">New Game</string>
-    <string name="save">Save</string>
-    <string name="load">Load</string>
+    <string name="path">Entscheidung</string>
+    <string name="repeat">Nochmal hören</string>
+    <string name="back">Zurück</string>
+    <string name="menu">Menü</string>
+    <string name="new_game">Von neu beginnen</string>
+    <string name="save">Speichern</string>
+    <string name="load">Spielstand laden</string>
     <string name="mountever">Mount Everest</string>
     <string name="comingsoon">Coming soon</string>
     <string name="save_file1">Save File 1</string>
