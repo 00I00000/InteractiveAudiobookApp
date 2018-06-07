@@ -40,11 +40,31 @@ public class PlayAudioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.play_audio_activity);
-        String path = "file:/"+ Integer.toString(Path.pathIdentifier);
-        /*int id = R.raw.entscheidung + "1";
-        mediaPlayer = MediaPlayer.create(this, Uri.parse("android.resource://" + getPackageName() + "/" +  path));
+        if (Path.pathIdentifier == 0) {
+            mediaPlayer = MediaPlayer.create(this, R.raw.rueckblende);
+        } else {
+            int pathId = Path.pathIdentifier;
+            int audioId = PlayAudioActivity.this.getResources().getIdentifier("file" + Integer.toString(pathId), "raw", PlayAudioActivity.this.getPackageName());
+            mediaPlayer = MediaPlayer.create(this, audioId);
+        }
         mediaPlayer.start();
-        seekbar = (SeekBar) findViewById(R.id.seekBar);*/
+        seekbar = (SeekBar) findViewById(R.id.seekBar);
+        seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
     }
 
     //todo: Add Skip button, add current chapter, mediaplayer
