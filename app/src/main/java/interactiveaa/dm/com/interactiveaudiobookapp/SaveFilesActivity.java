@@ -28,11 +28,13 @@ public class SaveFilesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.save_files_activity);
-        hideNavBar();
         Bundle b = getIntent().getExtras();
         int book = b.getInt("key");
         Path.bookIdentifier = book;
+        String bookName = PauseSaveActivity.getBookName(book);
+        //todo:check if save files exist, if yes use pause_save_layout
+        setContentView(R.layout.save_files_activity);
+        hideNavBar();
         Button newGame = findViewById(R.id.newGameBtn);
         newGame.setOnClickListener(new View.OnClickListener() {
             @Override

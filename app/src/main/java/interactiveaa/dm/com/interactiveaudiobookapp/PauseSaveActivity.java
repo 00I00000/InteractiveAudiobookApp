@@ -68,7 +68,7 @@ public class PauseSaveActivity extends AppCompatActivity {
         }
         if (state.equals("load")) {
             for (int i = 0; i < btnContainer.length; i++) {
-                checkFiles = getSharedPreferences("saveFiles", Context.MODE_PRIVATE);
+                checkFiles = getSharedPreferences(getBookName(Path.bookIdentifier), Context.MODE_PRIVATE);
                 int value = checkFiles.getInt("saveFile" + (i + 1), -1);
                 if (value == -1) {
                     btnContainer[i].setEnabled(false);
@@ -84,14 +84,14 @@ public class PauseSaveActivity extends AppCompatActivity {
     }
 
     public void save(int savePosition) {
-        SharedPreferences sharedPref = getSharedPreferences("saveFiles", Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = getSharedPreferences(getBookName(Path.bookIdentifier), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putInt("saveFile" + savePosition, Path.pathIdentifier);
         editor.apply();
     }
 
     public void load(int savePosition) {
-        checkFiles = getSharedPreferences("saveFiles", Context.MODE_PRIVATE);
+        checkFiles = getSharedPreferences(getBookName(Path.bookIdentifier), Context.MODE_PRIVATE);
         int pathIdentifier = checkFiles.getInt("saveFile" + savePosition, -1);
         Intent loadIntent = new Intent(PauseSaveActivity.this, DisplaySlidesActivity.class);
         Bundle b = new Bundle();
@@ -102,7 +102,7 @@ public class PauseSaveActivity extends AppCompatActivity {
     }
 
     private boolean overwritesFile(int savePosition) {
-        checkFiles = getSharedPreferences("saveFiles", Context.MODE_PRIVATE);
+        checkFiles = getSharedPreferences(getBookName(Path.bookIdentifier), Context.MODE_PRIVATE);
         int value = checkFiles.getInt("saveFile" + savePosition, -1);
         if (value != -1) {
             return true;
@@ -122,6 +122,13 @@ public class PauseSaveActivity extends AppCompatActivity {
         });
         prompt.setNegativeButton("Cancel", null);
         prompt.show();
+    }
+
+    public static String getBookName (int Identifier) {
+        switch (Identifier) {
+            case 0: return "MountEverest";
+            default: return "Error";
+        }
     }
 
 }

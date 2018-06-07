@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -17,9 +18,13 @@ import android.widget.SeekBar;
 
 public class PlayAudioActivity extends AppCompatActivity {
 
-    private Button playPause;
+    private ImageButton playPause;
     private ImageButton rewind;
     private ImageButton fastF;
+    private Handler handler = new Handler();
+
+    private float currTime;
+    private float endTime;
     private MediaPlayer mediaPlayer;
 
     private SeekBar seekbar;
@@ -48,11 +53,27 @@ public class PlayAudioActivity extends AppCompatActivity {
             mediaPlayer = MediaPlayer.create(this, audioId);
         }
         mediaPlayer.start();
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                stopPlaying();
+                if (Path.pathIdentifier == 0) {
+                    //todo:start new activity with file01
+                } else {
+                    //todo:start new activity with other files
+                }
+            }
+        });
         seekbar = (SeekBar) findViewById(R.id.seekBar);
+        seekbar.setMax(mediaPlayer.getDuration() / 1000);
+        handler.postDelayed(UpdateSongTime, 100);
+
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
+               if (mediaPlayer != null && fromUser) {
+                   mediaPlayer.seekTo(progress * 1000);
+               }
             }
 
             @Override
@@ -65,6 +86,23 @@ public class PlayAudioActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private Runnable UpdateSongTime = new Runnable() {
+        @Override
+        public void run() {
+            if (mediaPlayer != null) {
+                currTime = mediaPlayer.getCurrentPosition() / 1000;
+                seekbar.setProgress((int)currTime);
+            }
+            handler.postDelayed(UpdateSongTime, 100);
+        }
+    };
+
+    protected void stopPlaying() {
+        mediaPlayer.stop();
+        mediaPlayer.release();
+        mediaPlayer = null;
     }
 
     //todo: Add Skip button, add current chapter, mediaplayer
