@@ -1,18 +1,12 @@
 package interactiveaa.dm.com.interactiveaudiobookapp;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 
-public class SaveFilesActivity extends AppCompatActivity {
-
-    private SharedPreferences checkFiles;
+public class GameOverActivity extends AppCompatActivity {
 
     public void hideNavBar() {
         View decorView = getWindow().getDecorView();
@@ -26,28 +20,11 @@ public class SaveFilesActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.save_files_activity);
+        setContentView(R.layout.game_over_activity);
         hideNavBar();
-        Button newGame = findViewById(R.id.newGameBtn);
-        newGame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SaveFilesActivity.this, PlayAudioActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                finish();
-            }
-        });
-        Button back = findViewById(R.id.backBtn);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
     }
 
     @Override
@@ -56,5 +33,4 @@ public class SaveFilesActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         hideNavBar();
     }
-
 }

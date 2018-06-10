@@ -2,14 +2,13 @@ package interactiveaa.dm.com.interactiveaudiobookapp;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -19,15 +18,15 @@ import android.widget.SeekBar;
 public class PlayAudioActivity extends AppCompatActivity {
 
     private ImageButton playPause;
-    private ImageButton rewind;
-    private ImageButton fastF;
+    private Button skip;
     private Handler handler = new Handler();
 
+    private Button chapter;
+
     private float currTime;
-    private float endTime;
     private MediaPlayer mediaPlayer;
 
-    private SeekBar seekbar;
+    private TextThumbSeekBar seekbar;
 
     public void hideNavBar() {
         View decorView = getWindow().getDecorView();
@@ -48,11 +47,8 @@ public class PlayAudioActivity extends AppCompatActivity {
         if (Path.pathIdentifier == 0) {
             mediaPlayer = MediaPlayer.create(this, R.raw.rueckblende);
         } else {
-            //todo:fix res ID
             int pathId = Path.pathIdentifier;
-            int audioId = getResources().getIdentifier("raw/file" + Integer.toString(pathId), null, this.getPackageName());
-            int resid = getResources().getIdentifier("raw/file1", null, this.getPackageName());
-            Log.d("ASDF", Integer.toString(resid));
+            int audioId = getResources().getIdentifier("file" + Integer.toString(pathId), "raw", this.getPackageName());
             mediaPlayer = MediaPlayer.create(this, audioId);
         }
         mediaPlayer.start();
@@ -72,10 +68,30 @@ public class PlayAudioActivity extends AppCompatActivity {
                 }
             }
         });
-        seekbar = (SeekBar) findViewById(R.id.seekBar);
+
+        chapter = (Button) findViewById(R.id.crt_chapter);
+        chapter.setText("Kapitel " + Path.pathIdentifier);
+        chapter.setTextColor(Color.parseColor("#CF000000"));
+        skip = (Button) findViewById(R.id.skip_btn);
+        skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Path.pathIdentifier == 0) {
+                    Path.pathIdentifier++;
+                    Intent intent = new Intent(PlayAudioActivity.this, PlayAudioActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    stopPlaying();
+                    Intent intent = new Intent(PlayAudioActivity.this, DisplaySlidesActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        });
+        seekbar = findViewById(R.id.seekBar);
         seekbar.setMax(mediaPlayer.getDuration() / 1000);
         handler.postDelayed(UpdateSongTime, 1000);
-
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -94,6 +110,26 @@ public class PlayAudioActivity extends AppCompatActivity {
 
             }
         });
+        playPause = findViewById(R.id.pause_play_btn);
+        playPause.setImageResource(R.drawable.baseline_pause_circle_outline_white_48);
+        playPause.setTag(R.drawable.baseline_pause_circle_outline_white_48);
+        //android:background="?android:selectableItemBackground" used to make button transparent
+        playPause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Integer currentTag = (Integer) playPause.getTag();
+                Integer pauseId = new Integer(R.drawable.baseline_pause_circle_outline_white_48);
+                if (currentTag.equals(pauseId)) {
+                    mediaPlayer.pause();
+                    playPause.setImageResource(R.drawable.baseline_play_circle_outline_white_48);
+                    playPause.setTag(R.drawable.baseline_play_circle_outline_white_48);
+                } else {
+                    mediaPlayer.start();
+                    playPause.setImageResource(R.drawable.baseline_pause_circle_outline_white_48);
+                    playPause.setTag(R.drawable.baseline_pause_circle_outline_white_48);
+                }
+            }
+        });
     }
 
     private Runnable UpdateSongTime = new Runnable() {
@@ -107,17 +143,15 @@ public class PlayAudioActivity extends AppCompatActivity {
         }
     };
 
-    protected void stopPlaying() {
+    private void stopPlaying() {
         mediaPlayer.stop();
         mediaPlayer.release();
         mediaPlayer = null;
     }
 
-    //todo: Add Skip button, add current chapter, mediaplayer
-    //todo: Add endgame screen(game over, won), game over -> buttons: load save files, new game, chapter?
-
     @Override
     public void onBackPressed() {
+        mediaPlayer.pause();
         new AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle("Close App")
@@ -126,11 +160,19 @@ public class PlayAudioActivity extends AppCompatActivity {
                 {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        mediaPlayer.stop();
+                        mediaPlayer.release();
+                        handler.removeCallbacks(UpdateSongTime);
                         finish();
                     }
 
                 })
-                .setNegativeButton("No", null)
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mediaPlayer.start();
+                    }
+                })
                 .show();
     }
 

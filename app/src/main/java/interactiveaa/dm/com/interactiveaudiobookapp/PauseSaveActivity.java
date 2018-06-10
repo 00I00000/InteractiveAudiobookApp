@@ -46,8 +46,13 @@ public class PauseSaveActivity extends AppCompatActivity {
         saveBtn2 = findViewById(R.id.saveFile2);
         saveBtn3 = findViewById(R.id.saveFile3);
         Button[] btnContainer = {saveBtn1, saveBtn2, saveBtn3};
+        checkFiles = getSharedPreferences(Path.getBookName(), Context.MODE_PRIVATE);
         if (state.equals("save")) {
             for (int i = 0; i < btnContainer.length; i++) {
+                int value = checkFiles.getInt("saveFile" + (i + 1), -1);
+                if (value != -1) {
+                    btnContainer[i].setText("Kapitel" + value);
+                }
                 final int temp = i;
                 if (overwritesFile(i + 1)) {
                     btnContainer[i].setOnClickListener(new View.OnClickListener() {
@@ -68,10 +73,11 @@ public class PauseSaveActivity extends AppCompatActivity {
         }
         if (state.equals("load")) {
             for (int i = 0; i < btnContainer.length; i++) {
-                checkFiles = getSharedPreferences(Path.getBookName(), Context.MODE_PRIVATE);
                 int value = checkFiles.getInt("saveFile" + (i + 1), -1);
                 if (value == -1) {
                     btnContainer[i].setEnabled(false);
+                } else {
+                    btnContainer[i].setText("Kapitel" + value);
                 }
             }
         }

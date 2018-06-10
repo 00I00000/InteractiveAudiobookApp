@@ -1,28 +1,43 @@
 package interactiveaa.dm.com.interactiveaudiobookapp;
 
 import android.content.Context;
+import android.util.Log;
 
+import interactiveaa.dm.com.interactiveaudiobookapp.R;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class Path {
 
-    private HashMap<Integer, List<String>> path = new HashMap<Integer, List<String>>();
-    private List<String> answers = new ArrayList<>();
+    private HashMap<Integer, ArrayList<String>> path = new HashMap<Integer, ArrayList<String>>();
     public static int bookIdentifier;
     public static int pathIdentifier;
 
-    public Path(int bookIdentifier, int pathIdentifier) {
-        this.bookIdentifier = bookIdentifier;
-        this.pathIdentifier = pathIdentifier;
+    public Path(Context context) {
         if (bookIdentifier == 0) {
+            for (int i = 1; i < 10; i++) {
+                ArrayList<String> answers = new ArrayList<>();
+                int leftAnswerId = 0;
+                int rightAnswerId = 0;
+                try {
+                    Class res = R.string.class;
+                    Field field = res.getField("a" + pathIdentifier + "_" + 1);
+                    leftAnswerId = field.getInt(null);
+                    Field field2 = res.getField("a" + pathIdentifier + "_" + 2);
+                    rightAnswerId = field2.getInt(null);
+                } catch (Exception e) {
 
+                }
+                Log.d("ASDF", Integer.toString(leftAnswerId));
+                String left = context.getResources().getString(leftAnswerId);
+                String right = context.getResources().getString(rightAnswerId);
+                answers.add(left);
+                answers.add(right);
+                path.put(i, answers);
+                //importing (namespace).R is crucial to extracting strings from strings.xml
+            }
         }
-    }
-
-    public int getPathIdentifier() {
-        return pathIdentifier;
     }
 
     public String getLeftAnswer() {
@@ -33,10 +48,6 @@ public class Path {
     public String getRightAnswer() {
         Integer cast = new Integer(pathIdentifier);
         return path.get(cast).get(1);
-    }
-
-    public int getBookIdentifier() {
-        return bookIdentifier;
     }
 
     public static String getBookName () {

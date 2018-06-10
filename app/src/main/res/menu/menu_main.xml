@@ -11,5 +11,5 @@
         android:title="@string/load" />
     <item
         android:id="@+id/menu_new"
-        android:title="@string/new_game" />
+        android:title="@string/new_game_frag" />
 </menu>

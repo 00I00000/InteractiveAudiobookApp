@@ -5,7 +5,7 @@
     <string name="repeat">Nochmal hören</string>
     <string name="back">Zurück</string>
     <string name="menu">Menü</string>
-    <string name="new_game">Von neu beginnen</string>
+    <string name="new_game">Beginnen</string>
     <string name="save">Speichern</string>
     <string name="load">Spielstand laden</string>
     <string name="mountever">Mount Everest</string>
@@ -14,4 +14,37 @@
     <string name="save_file2">Save File 2</string>
     <string name="save_file3">Save File 3</string>
     <string name="skip">Skip</string>
+    <string name="new_game_frag">Buch neu beginnen</string>
+
+    <string name="entscheidung1">Da du Asthmatiker bist und nur noch wenige Medikamente zu Hause hast, musst du entweder...</string>
+    <string name="a1_1">...kurz die Apotheke besuchen.</string>
+    <string name="a1_2">...die Zeit zum Packen nutzen.</string>
+    <string name="entscheidung2">Wollt ihr eure Reise abbrechen...</string>
+    <string name="a2_1">...Ja - Um für deine Mutter da zu sein</string>
+    <string name="a2_2">...Nein - Die war teuer genug.</string>
+    <string name="entscheidung3">Was unternimmst du?</string>
+    <string name="a3_1">...Du springst auf und vertreibst den Angreifer.</string>
+    <string name="a3_2">...Du rüttelst deinen Partner wach und zusammen greift ihr den Feuerteufel.</string>
+    <string name="entscheidung4">Trotz nasser Kleidung läufst du weiter, eine gute Idee?</string>
+    <string name="a4_1">...Na und? Das trocknet wieder. Du läufst trotzn asser Kleidung weiter.</string>
+    <string name="a4_2">...Du ziehst dir schnell etwas Trockenes an, denn du willst keine Erkältung riskieren.</string>
+    <string name="entscheidung5">Ihr beratet euch und wählt...</string>
+    <string name="a5_1">...Weg 1, den schnelleren aber gefährlichen Weg, denn ihr wollt schnell aus dem schlechten Wetter gelangen. </string>
+    <string name="a5_2">...Weg 2, den langsameren aber sicheren Weg, um sicher anzukommen.</string>
+    <string name="entscheidung6">Was macht ihr?</string>
+    <string name="a6_1">Ihr geht ohne die zusätzliche Flaschen weiter um kein weiteres Risiko zu riskieren.</string>
+    <string name="a6_2">Du seilst dich ab und versuchst die zweite Flasche zu erreichen.</string>
+    <string name="entscheidung7">Du sagst deinem Vater...</string>
+    <string name="a7_1">...nicht Bescheid und riskierst in Atemnot zu verfallen.</string>
+    <string name="a7_2">...Bescheid, dass ihr eine Pause machen müsst, um dich zu erholen.</string>
+    <string name="entscheidung8">Du gibst deinem Vater...</string>
+    <string name="a8_1">...Recht, und ihr brecht die Expidition deiner Gesundheit zuliebe ab.</string>
+    <string name="a8_2">...eine gute Erklärung, warum du keinen Asthmaanfall mehr bekommen wirst und setzt die Reise fort.</string>
+    <string name="entscheidung9">Für welchen Weg entscheidet ihr euch?</string>
+    <string name="a9_1">...Den kürzeren Weg, da euch die Zeit davonrennt.</string>
+    <string name="a9_2">...Den langen Weg um sicher zu sein.</string>
+    <string name="entscheidung10">Traut ihr euch? Mit nur einer Flasche Sauerstoff weiter zu gehen?</string>
+    <string name="a10_1">...Ja klar! Aus diesem Grund haben wir ja die Reise geplant.</string>
+    <string name="a10_2">...Es reicht euch. Ihr habt von hier aus auch einen tollen Ausblick.</string>
+
 </resources>
