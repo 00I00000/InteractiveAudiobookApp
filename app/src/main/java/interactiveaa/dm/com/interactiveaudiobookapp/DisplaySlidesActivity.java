@@ -24,6 +24,7 @@ public class DisplaySlidesActivity extends AppCompatActivity {
 
     private Button leftAnswer;
     private Button rightAnswer;
+    private Button repeat;
     private TextView question;
     private TextView path;
 
@@ -68,6 +69,7 @@ public class DisplaySlidesActivity extends AppCompatActivity {
                 if (leftDeadEnds.contains(p)) {
                     Intent intent = new Intent(DisplaySlidesActivity.this, GameOverActivity.class);
                     startActivity(intent);
+                    //todo: pretty sure somewhere here is a bug
                     finish();
                 } else {
                     Path.pathIdentifier++;
@@ -95,6 +97,15 @@ public class DisplaySlidesActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }
+            }
+        });
+        repeat = findViewById(R.id.repeat);
+        repeat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DisplaySlidesActivity.this, PlayAudioActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

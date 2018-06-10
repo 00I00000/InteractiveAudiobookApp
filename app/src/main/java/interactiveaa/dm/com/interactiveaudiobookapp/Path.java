@@ -1,7 +1,6 @@
 package interactiveaa.dm.com.interactiveaudiobookapp;
 
 import android.content.Context;
-import android.util.Log;
 
 import interactiveaa.dm.com.interactiveaudiobookapp.R;
 import java.lang.reflect.Field;
@@ -16,7 +15,7 @@ public class Path {
 
     public Path(Context context) {
         if (bookIdentifier == 0) {
-            for (int i = 1; i < 10; i++) {
+            for (int i = 1; i < 11; i++) {
                 ArrayList<String> answers = new ArrayList<>();
                 int leftAnswerId = 0;
                 int rightAnswerId = 0;
@@ -29,7 +28,6 @@ public class Path {
                 } catch (Exception e) {
 
                 }
-                Log.d("ASDF", Integer.toString(leftAnswerId));
                 String left = context.getResources().getString(leftAnswerId);
                 String right = context.getResources().getString(rightAnswerId);
                 answers.add(left);

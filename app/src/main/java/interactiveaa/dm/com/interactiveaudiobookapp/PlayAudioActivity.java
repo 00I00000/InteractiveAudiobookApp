@@ -78,9 +78,12 @@ public class PlayAudioActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (Path.pathIdentifier == 0) {
                     Path.pathIdentifier++;
+                    stopPlaying();
                     Intent intent = new Intent(PlayAudioActivity.this, PlayAudioActivity.class);
                     startActivity(intent);
                     finish();
+                } else if (Path.pathIdentifier == 11) {
+                    //todo: startActivity(gamewon)
                 } else {
                     stopPlaying();
                     Intent intent = new Intent(PlayAudioActivity.this, DisplaySlidesActivity.class);

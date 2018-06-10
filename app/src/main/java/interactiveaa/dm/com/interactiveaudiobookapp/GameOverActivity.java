@@ -19,6 +19,10 @@ public class GameOverActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
     }
 
+    //todo: implement buttons
+    //possibly like this  ---Text---
+    //                    [] []  []
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

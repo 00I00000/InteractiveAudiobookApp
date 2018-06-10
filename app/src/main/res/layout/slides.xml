@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/qscreen">
+    android:background="@drawable/cloudsfogforest">
 
     <fragment
         android:id="@+id/pauseBtnFrag"
@@ -16,24 +16,23 @@
         tools:layout="@layout/pause_button_fragment" />
 
     <Button
-        android:id="@+id/rightAnswer"
+        android:id="@+id/leftAnswer"
         android:textAllCaps="false"
         android:layout_width="260sp"
         android:layout_height="200sp"
-        android:layout_marginLeft="10sp"
-        android:layout_marginStart="10sp"
+
         android:background="@drawable/button"
         app:layout_constraintLeft_toRightOf="@id/guideline6"
         app:layout_constraintTop_toBottomOf="@id/guideline5"
         tools:layout="@layout/right_answer_fragment" />
 
     <Button
-        android:id="@+id/leftAnswer"
+        android:id="@+id/rightAnswer"
         android:textAllCaps="false"
         android:layout_width="260sp"
         android:layout_height="200sp"
-        android:layout_marginLeft="30sp"
-        android:layout_marginStart="30sp"
+        android:layout_marginLeft="10sp"
+        android:layout_marginStart="10sp"
         android:background="@drawable/button"
         app:layout_constraintLeft_toRightOf="@id/guideline4"
         app:layout_constraintTop_toBottomOf="@id/guideline5"
@@ -44,8 +43,9 @@
         android:textSize="20sp"
         android:layout_width="match_parent"
         android:layout_height="80sp"
-        android:layout_marginLeft="40sp"
-        android:layout_marginRight="20sp"
+        android:layout_marginTop="10sp"
+        android:layout_marginLeft="60sp"
+        android:layout_marginRight="10sp"
         app:layout_constraintTop_toBottomOf="@id/guideline18"
         app:layout_constraintLeft_toRightOf="@id/guideline6" />
 
@@ -84,7 +84,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.45" />
+        app:layout_constraintGuide_percent="0.47" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline6"
