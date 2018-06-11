@@ -79,7 +79,7 @@ public class DisplaySlidesActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (rightDeadEnds.contains(p)) {
-                    Intent intent = new Intent(DisplaySlidesActivity.this, PlayAudioActivity.class);
+                    Intent intent = new Intent(DisplaySlidesActivity.this, GameOverActivity.class);
                     startActivity(intent);
                     finish();
                 } else {

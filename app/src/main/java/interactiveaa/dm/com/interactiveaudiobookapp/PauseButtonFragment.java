@@ -72,9 +72,7 @@ public class PauseButtonFragment extends Fragment implements View.OnClickListene
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         Intent intent = new Intent(getActivity(), PlayAudioActivity.class);
-                                        Bundle b = new Bundle();
-                                        b.putInt("key", 1);
-                                        intent.putExtras(b);
+                                        Path.pathIdentifier = 0;
                                         if (aP) {
                                             ((PlayAudioActivity)getActivity()).stopPlaying();
                                         }
