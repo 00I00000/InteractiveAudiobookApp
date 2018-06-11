@@ -5,8 +5,13 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 
 public class GameOverActivity extends AppCompatActivity {
+
+    private Button loadFiles;
+    private Button newGame;
+    private Button startGame;
 
     public void hideNavBar() {
         View decorView = getWindow().getDecorView();

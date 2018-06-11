@@ -94,6 +94,7 @@ public class PauseSaveActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putInt("saveFile" + savePosition, Path.pathIdentifier);
         editor.apply();
+        finish();
     }
 
     public void load(int savePosition) {

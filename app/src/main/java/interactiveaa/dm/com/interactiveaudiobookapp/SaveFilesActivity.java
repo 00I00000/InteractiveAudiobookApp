@@ -1,6 +1,5 @@
 package interactiveaa.dm.com.interactiveaudiobookapp;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,8 +10,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 public class SaveFilesActivity extends AppCompatActivity {
-
-    private SharedPreferences checkFiles;
 
     public void hideNavBar() {
         View decorView = getWindow().getDecorView();
