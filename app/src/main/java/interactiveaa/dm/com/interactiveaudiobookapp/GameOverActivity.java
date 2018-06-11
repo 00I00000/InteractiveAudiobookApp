@@ -26,6 +26,7 @@ public class GameOverActivity extends AppCompatActivity {
     }
 
     //todo: recycle activity for gamewon. textView.setText && getWindow().getDecorView().setBackgroundDrawable(*yourDrawable*);
+    //todo: add game over text
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
