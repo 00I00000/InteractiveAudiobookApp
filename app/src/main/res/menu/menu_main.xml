@@ -12,4 +12,7 @@
     <item
         android:id="@+id/menu_new"
         android:title="@string/new_game_frag" />
+    <item
+        android:id="@+id/menu_start"
+        android:title="@string/start_screen" />
 </menu>

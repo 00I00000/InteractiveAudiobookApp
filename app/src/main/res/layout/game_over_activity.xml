@@ -9,11 +9,13 @@
         android:id="@+id/plot"
         android:text="@string/game_over"
         android:textSize="50sp"
-        android:textColor="#817878"
-        android:shadowColor="#da0000"
+        android:textColor="#93b60101"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="130sp"
+        android:layout_marginLeft="110sp"
+        android:paddingLeft="20sp"
+        android:paddingRight="20sp"
+        android:background="#77ededed"
        app:layout_constraintLeft_toRightOf="@id/guideline21"
         app:layout_constraintBottom_toTopOf="@id/guideline19" />
 

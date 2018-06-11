@@ -5,12 +5,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
 public class DisplayBooksActivity extends AppCompatActivity {
+
+    public static boolean booksCall;
 
     private SharedPreferences checkFiles;
 
@@ -51,6 +54,7 @@ public class DisplayBooksActivity extends AppCompatActivity {
                 if (temp) {
                     Intent loadIntent = new Intent(DisplayBooksActivity.this, PauseSaveActivity.class);
                     Bundle b = new Bundle();
+                    booksCall = true;
                     b.putString("key","load");
                     loadIntent.putExtras(b);
                     startActivity(loadIntent);
@@ -58,8 +62,6 @@ public class DisplayBooksActivity extends AppCompatActivity {
                     Intent newGameIntent = new Intent(DisplayBooksActivity.this, SaveFilesActivity.class);
                     startActivity(newGameIntent);
                 }
-                Intent intent = new Intent(DisplayBooksActivity.this, SaveFilesActivity.class);
-                startActivity(intent);
             }
         });
     }

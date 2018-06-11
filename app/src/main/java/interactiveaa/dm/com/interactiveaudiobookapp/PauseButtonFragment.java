@@ -84,6 +84,28 @@ public class PauseButtonFragment extends Fragment implements View.OnClickListene
                                 .setNegativeButton("Back", null)
                                 .show();
                         return true;
+                    case R.id.menu_start:
+                        new AlertDialog.Builder(getContext())
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .setTitle("Back to Start")
+                                .setMessage("Going back will cause loss of unsaved progress")
+                                .setPositiveButton("Go to start", new DialogInterface.OnClickListener()
+                                {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                                        Path.pathIdentifier = 0;
+                                        if (aP) {
+                                            ((PlayAudioActivity)getActivity()).stopPlaying();
+                                        }
+                                        getActivity().startActivity(intent);
+                                        getActivity().finish();
+                                    }
+
+                                })
+                                .setNegativeButton("Back", null)
+                                .show();
+                        return true;
                     default:
                         return false;
                 }

@@ -193,7 +193,6 @@ public class PlayAudioActivity extends AppCompatActivity {
                             | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                             | View.SYSTEM_UI_FLAG_FULLSCREEN
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
-            Log.d("asdf", "reached !hasFocus");
         } else {
             mediaPlayer.start();
         }
@@ -204,9 +203,5 @@ public class PlayAudioActivity extends AppCompatActivity {
         super.onResume();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         hideNavBar();
-        if (mediaPlayer != null) {
-            Log.d("asdf", "not null");
-            mediaPlayer.start();
-        }
     }
 }

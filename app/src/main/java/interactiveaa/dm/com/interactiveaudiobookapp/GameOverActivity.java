@@ -25,9 +25,7 @@ public class GameOverActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
     }
 
-    //todo: implement buttons
-    //possibly like this  ---Text---
-    //                    [] []  []
+    //todo: recycle activity for gamewon. textView.setText && getWindow().getDecorView().setBackgroundDrawable(*yourDrawable*);
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

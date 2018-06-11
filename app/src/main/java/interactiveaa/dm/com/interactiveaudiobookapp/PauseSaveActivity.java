@@ -1,12 +1,15 @@
 package interactiveaa.dm.com.interactiveaudiobookapp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -15,9 +18,13 @@ public class PauseSaveActivity extends AppCompatActivity {
 
     private SharedPreferences checkFiles;
 
+    private Activity callingActivity;
+
     private Button saveBtn1;
     private Button saveBtn2;
     private Button saveBtn3;
+
+    private Button newGameBtn;
 
     public void hideNavBar() {
         View decorView = getWindow().getDecorView();
@@ -35,9 +42,20 @@ public class PauseSaveActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.pause_save_activity);
-        //used to hide a button
-        /*newGameBtn = findViewById(R.id.newGameBtn);
-        newGameBtn.setVisibility(View.GONE);*/
+        if (!DisplayBooksActivity.booksCall) {
+            newGameBtn = findViewById(R.id.new_game_books);
+            newGameBtn.setVisibility(View.GONE);
+        } else {
+            DisplayBooksActivity.booksCall = false;
+            newGameBtn = findViewById(R.id.new_game_books);
+            newGameBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(PauseSaveActivity.this, PlayAudioActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
         hideNavBar();
         Bundle b = getIntent().getExtras();
         String state = b.getString("key");
@@ -51,7 +69,8 @@ public class PauseSaveActivity extends AppCompatActivity {
             for (int i = 0; i < btnContainer.length; i++) {
                 int value = checkFiles.getInt("saveFile" + (i + 1), -1);
                 if (value != -1) {
-                    btnContainer[i].setText("Kapitel" + value);
+                    btnContainer[i].setText("Kapitel " + value);
+                    btnContainer[i].setTransformationMethod(null);
                 }
                 final int temp = i;
                 if (overwritesFile(i + 1)) {
@@ -77,7 +96,15 @@ public class PauseSaveActivity extends AppCompatActivity {
                 if (value == -1) {
                     btnContainer[i].setEnabled(false);
                 } else {
-                    btnContainer[i].setText("Kapitel" + value);
+                    final int temp = i;
+                    btnContainer[i].setText("Kapitel " + value);
+                    btnContainer[i].setTransformationMethod(null);
+                    btnContainer[i].setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            load(temp + 1);
+                        }
+                    });
                 }
             }
         }
