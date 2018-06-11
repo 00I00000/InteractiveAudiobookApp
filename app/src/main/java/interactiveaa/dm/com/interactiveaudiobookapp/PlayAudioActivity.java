@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -25,7 +26,8 @@ public class PlayAudioActivity extends AppCompatActivity {
     private Button chapter;
 
     private float currTime;
-    private MediaPlayer mediaPlayer;
+    public static MediaPlayer mediaPlayer;
+    //this needs to be static because PauseSaveActivity accesses this, too lazy to change
 
     private TextThumbSeekBar seekbar;
 
@@ -147,7 +149,7 @@ public class PlayAudioActivity extends AppCompatActivity {
         }
     };
 
-    private void stopPlaying() {
+    public void stopPlaying() {
         mediaPlayer.stop();
         mediaPlayer.release();
         mediaPlayer = null;
@@ -192,6 +194,9 @@ public class PlayAudioActivity extends AppCompatActivity {
                             | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                             | View.SYSTEM_UI_FLAG_FULLSCREEN
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+            Log.d("asdf", "reached !hasFocus");
+        } else {
+            mediaPlayer.start();
         }
     }
 
@@ -200,5 +205,9 @@ public class PlayAudioActivity extends AppCompatActivity {
         super.onResume();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         hideNavBar();
+        if (mediaPlayer != null) {
+            Log.d("asdf", "not null");
+            mediaPlayer.start();
+        }
     }
 }

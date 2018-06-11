@@ -103,6 +103,10 @@ public class PauseSaveActivity extends AppCompatActivity {
         Intent loadIntent = new Intent(PauseSaveActivity.this, DisplaySlidesActivity.class);
         Path.pathIdentifier = pathIdentifier;
         loadIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (PlayAudioActivity.mediaPlayer != null) {
+            PlayAudioActivity.mediaPlayer.stop();
+            PlayAudioActivity.mediaPlayer.release();
+        }
         startActivity(loadIntent);
         finish();
     }

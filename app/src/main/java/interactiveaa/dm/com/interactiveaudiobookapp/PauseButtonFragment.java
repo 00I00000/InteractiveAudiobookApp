@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,8 +36,14 @@ public class PauseButtonFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View view) {
+        boolean audioPlaying = false;
+        if (getActivity() instanceof PlayAudioActivity) {
+            ((PlayAudioActivity)getActivity()).mediaPlayer.pause();
+            audioPlaying = true;
+        }
         mPopupMenu = new PopupMenu(getContext(), imageButton);
         mPopupMenu.inflate(R.menu.menu_main);
+        final boolean aP = audioPlaying;
         mPopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -68,6 +75,9 @@ public class PauseButtonFragment extends Fragment implements View.OnClickListene
                                         Bundle b = new Bundle();
                                         b.putInt("key", 1);
                                         intent.putExtras(b);
+                                        if (aP) {
+                                            ((PlayAudioActivity)getActivity()).stopPlaying();
+                                        }
                                         getActivity().startActivity(intent);
                                         getActivity().finish();
                                     }

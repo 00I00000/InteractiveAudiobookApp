@@ -69,7 +69,6 @@ public class DisplaySlidesActivity extends AppCompatActivity {
                 if (leftDeadEnds.contains(p)) {
                     Intent intent = new Intent(DisplaySlidesActivity.this, GameOverActivity.class);
                     startActivity(intent);
-                    //todo: pretty sure somewhere here is a bug
                     finish();
                 } else {
                     Path.pathIdentifier++;

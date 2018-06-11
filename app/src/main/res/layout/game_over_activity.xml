@@ -7,37 +7,47 @@
 
     <TextView
         android:id="@+id/plot"
+        android:text="@string/game_over"
+        android:textSize="50sp"
+        android:textColor="#817878"
+        android:shadowColor="#da0000"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="200sp"
-        android:layout_marginRight="200sp"
+        android:layout_marginLeft="150sp"
+       app:layout_constraintLeft_toRightOf="@id/guideline21"
         app:layout_constraintBottom_toTopOf="@id/guideline19" />
 
     <Button
         android:id="@+id/load_files"
+        android:text="@string/load"
+        android:textAllCaps="false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40sp"
-        android:layout_marginLeft="40sp"
+        android:layout_marginTop="50sp"
         android:background="@drawable/button"
-        app:layout_constraintTop_toBottomOf="@id/guideline19"/>
+        app:layout_constraintLeft_toRightOf="@id/guideline20"
+        app:layout_constraintTop_toBottomOf="@id/guideline19" />
 
     <Button
         android:id="@+id/new_game"
+        android:text="@string/new_game"
+        android:textAllCaps="false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40sp"
-        android:layout_marginLeft="200sp"
+        android:layout_marginTop="50sp"
         android:background="@drawable/button"
+        app:layout_constraintLeft_toRightOf="@id/guideline21"
         app:layout_constraintTop_toBottomOf="@id/guideline19" />
 
     <Button
         android:id="@+id/start_screen"
+        android:text="@string/start_screen"
+        android:textAllCaps="false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40sp"
-        android:layout_marginLeft="400sp"
+        android:layout_marginTop="50sp"
         android:background="@drawable/button"
+        app:layout_constraintLeft_toRightOf="@id/guideline22"
         app:layout_constraintTop_toBottomOf="@id/guideline19" />
 
     <android.support.constraint.Guideline
@@ -46,5 +56,26 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.4" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.45" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.75" />
 
 </android.support.constraint.ConstraintLayout>
