@@ -1,6 +1,9 @@
 package interactiveaa.dm.com.interactiveaudiobookapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -41,6 +44,16 @@ public class DisplaySlidesActivity extends AppCompatActivity {
         hideNavBar();
         path = findViewById(R.id.path);
         path.setText("Entscheidung " + Path.pathIdentifier);
+        int audioId = getResources().getIdentifier("entscheidung" + Integer.toString(Path.pathIdentifier), "raw", this.getPackageName());
+        PlayAudioActivity.mediaPlayer = MediaPlayer.create(this, audioId);
+        PlayAudioActivity.mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                PlayAudioActivity.mediaPlayer.stop();
+                PlayAudioActivity.mediaPlayer.release();
+                PlayAudioActivity.mediaPlayer = null;
+            }
+        });
         question = findViewById(R.id.question);
         int questionId = getResources().getIdentifier("entscheidung" + Path.pathIdentifier, "string", getPackageName());
         question.setText(getString(questionId));
@@ -58,6 +71,7 @@ public class DisplaySlidesActivity extends AppCompatActivity {
         leftAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                stopRunningMP();
                 if (leftDeadEnds.contains(p)) {
                     Intent intent = new Intent(DisplaySlidesActivity.this, GameOverActivity.class);
                     startActivity(intent);
@@ -78,6 +92,7 @@ public class DisplaySlidesActivity extends AppCompatActivity {
         rightAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                stopRunningMP();
                 if (rightDeadEnds.contains(p)) {
                     Intent intent = new Intent(DisplaySlidesActivity.this, GameOverActivity.class);
                     startActivity(intent);
@@ -94,6 +109,7 @@ public class DisplaySlidesActivity extends AppCompatActivity {
         repeat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                stopRunningMP();
                 Intent intent = new Intent(DisplaySlidesActivity.this, PlayAudioActivity.class);
                 startActivity(intent);
                 finish();
@@ -101,11 +117,68 @@ public class DisplaySlidesActivity extends AppCompatActivity {
         });
     }
 
+    private void stopRunningMP() {
+        if (PlayAudioActivity.mediaPlayer != null) {
+            PlayAudioActivity.mediaPlayer.stop();
+            PlayAudioActivity.mediaPlayer.release();
+            PlayAudioActivity.mediaPlayer = null;
+        }
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         hideNavBar();
+        if (PlayAudioActivity.mediaPlayer != null) {
+            PlayAudioActivity.mediaPlayer.start();
+        }
     }
+
+    @Override
+    public void onBackPressed() {
+        if (PlayAudioActivity.mediaPlayer != null) {
+            PlayAudioActivity.mediaPlayer.pause();
+            new AlertDialog.Builder(this)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle("Close App")
+                    .setMessage("Do you want to exit the app?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            PlayAudioActivity.mediaPlayer.stop();
+                            PlayAudioActivity.mediaPlayer.release();
+                            finish();
+                        }
+
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            PlayAudioActivity.mediaPlayer.start();
+                        }
+                    })
+                    .show();
+        }
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (!hasFocus) {
+            View decorView = getWindow().getDecorView();
+            decorView.setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        } else {
+            PlayAudioActivity.mediaPlayer.start();
+        }
+    }
+
 
 }

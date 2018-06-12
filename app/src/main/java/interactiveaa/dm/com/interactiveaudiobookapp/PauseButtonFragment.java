@@ -37,13 +37,20 @@ public class PauseButtonFragment extends Fragment implements View.OnClickListene
     @Override
     public void onClick(View view) {
         boolean audioPlaying = false;
+        boolean display = false;
         if (getActivity() instanceof PlayAudioActivity) {
             ((PlayAudioActivity)getActivity()).mediaPlayer.pause();
             audioPlaying = true;
         }
+        if (getActivity() instanceof DisplaySlidesActivity && PlayAudioActivity.mediaPlayer != null) {
+            PlayAudioActivity.mediaPlayer.pause();
+            audioPlaying = true;
+            display = true;
+        }
         mPopupMenu = new PopupMenu(getContext(), imageButton);
         mPopupMenu.inflate(R.menu.menu_main);
         final boolean aP = audioPlaying;
+        final boolean d = display;
         mPopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -73,7 +80,11 @@ public class PauseButtonFragment extends Fragment implements View.OnClickListene
                                     public void onClick(DialogInterface dialog, int which) {
                                         Intent intent = new Intent(getActivity(), PlayAudioActivity.class);
                                         Path.pathIdentifier = 0;
-                                        if (aP) {
+                                        if (aP && d) {
+                                            PlayAudioActivity.mediaPlayer.stop();
+                                            PlayAudioActivity.mediaPlayer.release();
+                                            PlayAudioActivity.mediaPlayer = null;
+                                        } else if (aP) {
                                             ((PlayAudioActivity)getActivity()).stopPlaying();
                                         }
                                         getActivity().startActivity(intent);
@@ -95,7 +106,11 @@ public class PauseButtonFragment extends Fragment implements View.OnClickListene
                                     public void onClick(DialogInterface dialog, int which) {
                                         Intent intent = new Intent(getActivity(), MainActivity.class);
                                         Path.pathIdentifier = 0;
-                                        if (aP) {
+                                        if (aP && d) {
+                                            PlayAudioActivity.mediaPlayer.stop();
+                                            PlayAudioActivity.mediaPlayer.release();
+                                            PlayAudioActivity.mediaPlayer = null;
+                                        } else if (aP) {
                                             ((PlayAudioActivity)getActivity()).stopPlaying();
                                         }
                                         getActivity().startActivity(intent);

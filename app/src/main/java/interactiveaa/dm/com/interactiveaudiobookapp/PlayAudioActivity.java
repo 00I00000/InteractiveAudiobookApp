@@ -63,6 +63,10 @@ public class PlayAudioActivity extends AppCompatActivity {
                     Intent firstIntent = new Intent(PlayAudioActivity.this, PlayAudioActivity.class);
                     startActivity(firstIntent);
                     finish();
+                } else if (Path.pathIdentifier == 11) {
+                    Intent intent = new Intent(PlayAudioActivity.this, GameOverActivity.class);
+                    startActivity(intent);
+                    finish();
                 } else {
                     Intent slidesIntent = new Intent(PlayAudioActivity.this, DisplaySlidesActivity.class);
                     startActivity(slidesIntent);
@@ -197,9 +201,18 @@ public class PlayAudioActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        if (mediaPlayer != null) {
+            mediaPlayer.pause();
+        }
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         hideNavBar();
+        mediaPlayer.start();
     }
 }
