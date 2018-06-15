@@ -40,7 +40,6 @@
         android:textSize="20sp"
         android:layout_width="match_parent"
         android:layout_height="80sp"
-        android:layout_marginTop="10sp"
         android:layout_marginLeft="10sp"
         android:layout_marginRight="10sp"
         android:background="#bdffffff"
@@ -117,6 +116,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.19" />
+        app:layout_constraintGuide_percent="0.22" />
 
 </android.support.constraint.ConstraintLayout>
