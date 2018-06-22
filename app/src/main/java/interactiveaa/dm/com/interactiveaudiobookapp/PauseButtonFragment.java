@@ -24,6 +24,7 @@ public class PauseButtonFragment extends Fragment implements View.OnClickListene
 
     ImageButton imageButton;
     private PopupMenu mPopupMenu;
+    final boolean[] clicked = {false};
 
     @Nullable
     @Override
@@ -56,6 +57,7 @@ public class PauseButtonFragment extends Fragment implements View.OnClickListene
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.menu_save:
+                        clicked[0] = true;
                         Intent saveIntent = new Intent(getActivity(), PauseSaveActivity.class);
                         Bundle bSave = new Bundle();
                         bSave.putString("key", "save");
@@ -63,6 +65,7 @@ public class PauseButtonFragment extends Fragment implements View.OnClickListene
                         getActivity().startActivity(saveIntent);
                         return true;
                     case R.id.menu_load:
+                        clicked[0] = false;
                         Intent loadIntent = new Intent(getActivity(), PauseSaveActivity.class);
                         Bundle bLoad = new Bundle();
                         bLoad.putString("key", "load");
@@ -123,6 +126,16 @@ public class PauseButtonFragment extends Fragment implements View.OnClickListene
                         return true;
                     default:
                         return false;
+                }
+            }
+        });
+        mPopupMenu.setOnDismissListener(new PopupMenu.OnDismissListener() {
+            @Override
+            public void onDismiss(PopupMenu menu) {
+                if (!clicked[0]) {
+                    if (PlayAudioActivity.mediaPlayer != null) {
+                        PlayAudioActivity.mediaPlayer.start();
+                    }
                 }
             }
         });
