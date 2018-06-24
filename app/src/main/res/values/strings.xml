@@ -6,6 +6,7 @@
     <string name="back">Zurück</string>
     <string name="menu">Menü</string>
     <string name="new_game">Beginnen</string>
+    <string name="new_game_over">Neu beginnen</string>
     <string name="save">Speichern</string>
     <string name="load">Spielstand laden</string>
     <string name="mountever">Mount Everest</string>
@@ -15,7 +16,8 @@
     <string name="save_file3">Save File 3</string>
     <string name="skip">Skip</string>
     <string name="new_game_frag">Buch neu beginnen</string>
-    <string name="game_over">Game Over</string>
+    <string name="game_over">Reise abgebrochen</string>
+    <string name="game_won">Mount Everest erklommen!</string>
     <string name="start_screen">Zurück zum Start</string>
 
     <string name="entscheidung1">Da du Asthmatiker bist und nur noch wenige Medikamente zu Hause hast, musst du entweder...</string>
@@ -28,11 +30,11 @@
     <string name="a3_1">...Du springst auf und vertreibst den Angreifer.</string>
     <string name="a3_2">...Du rüttelst deinen Partner wach und zusammen greift ihr den Feuerteufel.</string>
     <string name="entscheidung4">Trotz nasser Kleidung läufst du weiter, eine gute Idee?</string>
-    <string name="a4_1">...Na und? Das trocknet wieder. Du läufst trotzn asser Kleidung weiter.</string>
+    <string name="a4_1">...Na und? Das trocknet wieder. Du läufst trotz nasser Kleidung weiter.</string>
     <string name="a4_2">...Du ziehst dir schnell etwas Trockenes an, denn du willst keine Erkältung riskieren.</string>
     <string name="entscheidung5">Ihr beratet euch und wählt...</string>
-    <string name="a5_1">...Weg 1, den schnelleren aber gefährlichen Weg, denn ihr wollt schnell aus dem schlechten Wetter gelangen. </string>
-    <string name="a5_2">...Weg 2, den langsameren aber sicheren Weg, um sicher anzukommen.</string>
+    <string name="a5_1">...Weg eins, den schnelleren aber gefährlichen Weg, denn ihr wollt schnell aus dem schlechten Wetter gelangen. </string>
+    <string name="a5_2">...Weg zwei, den langsameren aber sicheren Weg, um sicher anzukommen.</string>
     <string name="entscheidung6">Was macht ihr?</string>
     <string name="a6_1">Ihr geht ohne die zusätzliche Flaschen weiter um kein weiteres Risiko zu riskieren.</string>
     <string name="a6_2">Du seilst dich ab und versuchst die zweite Flasche zu erreichen.</string>

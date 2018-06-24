@@ -88,6 +88,10 @@ public class PlayAudioActivity extends AppCompatActivity {
                     Intent intent = new Intent(PlayAudioActivity.this, PlayAudioActivity.class);
                     startActivity(intent);
                     finish();
+                } else if (Path.pathIdentifier == 11) {
+                    Intent intent = new Intent(PlayAudioActivity.this, GameOverActivity.class);
+                    startActivity(intent);
+                    finish();
                 } else {
                     stopPlaying();
                     Intent intent = new Intent(PlayAudioActivity.this, DisplaySlidesActivity.class);

@@ -1,54 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/game_over_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/ancientarchbridge">
 
     <TextView
-        android:id="@+id/plot"
-        android:text="@string/game_over"
-        android:textSize="50sp"
-        android:textColor="#93b60101"
+        android:id="@+id/game_over_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="110sp"
+        android:layout_marginLeft="70sp"
+        android:background="#77ededed"
         android:paddingLeft="20sp"
         android:paddingRight="20sp"
+        android:text="@string/game_over"
+        android:textColor="#93b60101"
+        android:textSize="50sp"
+        app:layout_constraintBottom_toTopOf="@id/guideline19"
+        app:layout_constraintLeft_toRightOf="@id/guideline23" />
+
+    <TextView
+        android:id="@+id/game_won"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40sp"
         android:background="#77ededed"
-       app:layout_constraintLeft_toRightOf="@id/guideline21"
-        app:layout_constraintBottom_toTopOf="@id/guideline19" />
+        android:paddingLeft="20sp"
+        android:paddingRight="20sp"
+        android:text="@string/game_won"
+        android:textColor="#93B69501"
+        android:textSize="50sp"
+        app:layout_constraintBottom_toTopOf="@id/guideline19"
+        app:layout_constraintLeft_toRightOf="@id/guideline23" />
+
 
     <Button
         android:id="@+id/load_files"
-        android:text="@string/load"
-        android:textAllCaps="false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50sp"
         android:background="@drawable/button"
+        android:text="@string/load"
+        android:textAllCaps="false"
         app:layout_constraintLeft_toRightOf="@id/guideline20"
         app:layout_constraintTop_toBottomOf="@id/guideline19" />
 
     <Button
         android:id="@+id/new_game"
-        android:text="@string/new_game"
-        android:textAllCaps="false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50sp"
         android:background="@drawable/button"
+        android:text="@string/new_game_over"
+        android:textAllCaps="false"
         app:layout_constraintLeft_toRightOf="@id/guideline21"
         app:layout_constraintTop_toBottomOf="@id/guideline19" />
 
     <Button
         android:id="@+id/start_screen"
-        android:text="@string/start_screen"
-        android:textAllCaps="false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50sp"
         android:background="@drawable/button"
+        android:text="@string/start_screen"
+        android:textAllCaps="false"
         app:layout_constraintLeft_toRightOf="@id/guideline22"
         app:layout_constraintTop_toBottomOf="@id/guideline19" />
 
@@ -79,5 +95,12 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.7" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
 
 </android.support.constraint.ConstraintLayout>

@@ -158,4 +158,32 @@ public class PauseSaveActivity extends AppCompatActivity {
         prompt.show();
     }
 
+    @Override
+    public void onBackPressed() {
+        if (PlayAudioActivity.mediaPlayer != null) {
+            PlayAudioActivity.mediaPlayer.pause();
+            new AlertDialog.Builder(this)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle("Close App")
+                    .setMessage("Do you want to exit the app?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            PlayAudioActivity.mediaPlayer.stop();
+                            PlayAudioActivity.mediaPlayer.release();
+                            finish();
+                        }
+
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            PlayAudioActivity.mediaPlayer.start();
+                        }
+                    })
+                    .show();
+        }
+    }
+
 }
