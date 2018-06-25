@@ -13,6 +13,10 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 public class GameOverActivity extends AppCompatActivity {
 
     private Button loadFiles;
@@ -20,6 +24,7 @@ public class GameOverActivity extends AppCompatActivity {
     private Button startGame;
     private TextView gameOverText;
     private TextView gameWonText;
+    private TextView plotText;
     private ConstraintLayout layout;
 
     public void hideNavBar() {
@@ -34,23 +39,32 @@ public class GameOverActivity extends AppCompatActivity {
     }
 
     //todo: fix game over activity layout probably.
-    //todo: add game over text
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.game_over_activity);
-        hideNavBar();
-        if (Path.pathIdentifier == 11) {
-            gameOverText = findViewById(R.id.game_over_text);
-            gameOverText.setVisibility(View.GONE);
-            layout = findViewById(R.id.game_over_layout);
-            layout.setBackground(ContextCompat.getDrawable(this, R.drawable.adventure753772));
+        Set<Integer> hasPlot = new HashSet<Integer>(Arrays.asList(6, 7, 10));
+        if (hasPlot.contains(Path.pathIdentifier)) {
+            setContentView(R.layout.game_over_plot_activity);
+            hideNavBar();
+            int plotId = getResources().getIdentifier("a" + Path.pathIdentifier + "_lost", "string", getPackageName());
+            plotText = findViewById(R.id.game_over_plot);
+            plotText.setText(plotId);
         } else {
-            gameWonText = findViewById(R.id.game_won);
-            gameWonText.setVisibility(View.GONE);
+            setContentView(R.layout.game_over_activity);
+            hideNavBar();
+            if (Path.pathIdentifier == 11) {
+                gameOverText = findViewById(R.id.game_over_text);
+                gameOverText.setVisibility(View.GONE);
+                layout = findViewById(R.id.game_over_layout);
+                layout.setBackground(ContextCompat.getDrawable(this, R.drawable.adventure753772));
+            } else {
+                gameWonText = findViewById(R.id.game_won);
+                gameWonText.setVisibility(View.GONE);
+            }
         }
+
         loadFiles = findViewById(R.id.load_files);
         loadFiles.setOnClickListener(new View.OnClickListener() {
             @Override

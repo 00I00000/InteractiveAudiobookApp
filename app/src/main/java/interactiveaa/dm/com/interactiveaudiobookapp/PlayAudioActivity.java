@@ -1,5 +1,6 @@
 package interactiveaa.dm.com.interactiveaudiobookapp;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -7,6 +8,8 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -21,6 +24,7 @@ public class PlayAudioActivity extends AppCompatActivity {
     private ImageButton playPause;
     private Button skip;
     private Handler handler = new Handler();
+    private ConstraintLayout mLayout;
 
     private Button chapter;
 
@@ -46,6 +50,47 @@ public class PlayAudioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.play_audio_activity);
+        mLayout = findViewById(R.id.play_audio_layout);
+        switch (Path.pathIdentifier) {
+            case 0:
+                mLayout.setBackground(ContextCompat.getDrawable(this, R.drawable.adventure355747));
+                break;
+            case 1:
+                mLayout.setBackground(ContextCompat.getDrawable(this, R.drawable.adventure408503));
+                break;
+            case 2:
+                mLayout.setBackground(ContextCompat.getDrawable(this, R.drawable.aircraft527));
+                break;
+            case 3:
+                mLayout.setBackground(ContextCompat.getDrawable(this, R.drawable.clouds879444));
+                break;
+            case 4:
+                mLayout.setBackground(ContextCompat.getDrawable(this, R.drawable.clouddark));
+                break;
+            case 5:
+                mLayout.setBackground(ContextCompat.getDrawable(this, R.drawable.clouds904111));
+                break;
+            case 6:
+                mLayout.setBackground(ContextCompat.getDrawable(this, R.drawable.adventure303040));
+                break;
+            case 7:
+                mLayout.setBackground(ContextCompat.getDrawable(this, R.drawable.cloudsdaylight));
+                break;
+            case 8:
+                mLayout.setBackground(ContextCompat.getDrawable(this, R.drawable.cloudslandscape));
+                break;
+            case 9:
+                mLayout.setBackground(ContextCompat.getDrawable(this, R.drawable.adventure303040));
+                break;
+            case 10:
+                mLayout.setBackground(ContextCompat.getDrawable(this, R.drawable.clouddark));
+                break;
+            case 11:
+                mLayout.setBackground(ContextCompat.getDrawable(this, R.drawable.adventure355747));
+                break;
+            default:
+                break;
+        }
         if (Path.pathIdentifier == 0) {
             mediaPlayer = MediaPlayer.create(this, R.raw.rueckblende);
         } else {

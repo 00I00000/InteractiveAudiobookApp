@@ -51,4 +51,8 @@
     <string name="a10_1">...Ja klar! Aus diesem Grund haben wir ja die Reise geplant.</string>
     <string name="a10_2">...Es reicht euch. Ihr habt von hier aus auch einen tollen Ausblick.</string>
 
+    <string name="a6_lost">Das Seil reist und du stürzt in die Tiefe!</string>
+    <string name="a7_lost">Kurz danach fällst du in Ohnmacht. Du erinnerst dich nur noch wie dein Partner Rettung anfordert</string>
+    <string name="a10_lost">Der Abstieg gelang ohne Probleme.</string>
+
 </resources>

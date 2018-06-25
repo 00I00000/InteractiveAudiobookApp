@@ -3,6 +3,8 @@ package interactiveaa.dm.com.interactiveaudiobookapp;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.support.constraint.ConstraintLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,6 +24,7 @@ public class DisplaySlidesActivity extends AppCompatActivity {
     private Button repeat;
     private TextView question;
     private TextView path;
+    private ConstraintLayout mLayout;
 
     private Path pathLogic;
 
@@ -40,8 +43,46 @@ public class DisplaySlidesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.display_slides_acitivty);
+        setContentView(R.layout.display_slides_activity);
         hideNavBar();
+        mLayout = findViewById(R.id.display_slides_layout);
+        switch (Path.pathIdentifier) {
+            case 1:
+                mLayout.setBackground(ContextCompat.getDrawable(this, R.drawable.adventure408503));
+                break;
+            case 2:
+                mLayout.setBackground(ContextCompat.getDrawable(this, R.drawable.aircraft527));
+                break;
+            case 3:
+                mLayout.setBackground(ContextCompat.getDrawable(this, R.drawable.clouds879444));
+                break;
+            case 4:
+                mLayout.setBackground(ContextCompat.getDrawable(this, R.drawable.clouddark));
+                break;
+            case 5:
+                mLayout.setBackground(ContextCompat.getDrawable(this, R.drawable.clouds904111));
+                break;
+            case 6:
+                mLayout.setBackground(ContextCompat.getDrawable(this, R.drawable.adventure303040));
+                break;
+            case 7:
+                mLayout.setBackground(ContextCompat.getDrawable(this, R.drawable.cloudsdaylight));
+                break;
+            case 8:
+                mLayout.setBackground(ContextCompat.getDrawable(this, R.drawable.cloudslandscape));
+                break;
+            case 9:
+                mLayout.setBackground(ContextCompat.getDrawable(this, R.drawable.adventure303040));
+                break;
+            case 10:
+                mLayout.setBackground(ContextCompat.getDrawable(this, R.drawable.clouddark));
+                break;
+            case 11:
+                mLayout.setBackground(ContextCompat.getDrawable(this, R.drawable.adventure355747));
+                break;
+            default:
+                break;
+        }
         path = findViewById(R.id.path);
         path.setText("Entscheidung " + Path.pathIdentifier);
         int audioId = getResources().getIdentifier("entscheidung" + Integer.toString(Path.pathIdentifier), "raw", this.getPackageName());

@@ -65,7 +65,7 @@ public class PauseButtonFragment extends Fragment implements View.OnClickListene
                         getActivity().startActivity(saveIntent);
                         return true;
                     case R.id.menu_load:
-                        clicked[0] = false;
+                        clicked[0] = true;
                         Intent loadIntent = new Intent(getActivity(), PauseSaveActivity.class);
                         Bundle bLoad = new Bundle();
                         bLoad.putString("key", "load");
